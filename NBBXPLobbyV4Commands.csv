@@ -1,0 +1,22 @@
+Command List,Arg1,Arg2,Arg3,Arg4,Arg5,Permission,Description
+god,player*,,,,,1,Toggles Godmode. You can not be killed by any normal means. Any command that runs sucide on you can kill you.
+sps,float*,player*,,,,1,Sets a Players Speed to the inputed value.
+print,text,,,,,60,Prints the inputed text (if any) to everyones kill feed.
+pprint,player*,text,,,,50,Prints the inputed text (if any) to the inputed players kill feed.
+die,,,,,,1,Kills the player who called the function even if they are in godmode.
+forcehost,bool*,,,,,100,"Host only and auto run on game start on host with a value of true. With no arguments or true as it, enables forcehost. Otherwise disables it."
+changeteam,str*,,,,,1,"Allows the player to change teams. If no input is given, simply swaps the players team. Otherwise, if an invalid team name is given, command fails. If a valid team name is fed in, changes the players team to that one."
+gs,int,int,,,,90,"Changes game setting varibles. Arg1 is a selector of setting number while arg2 is the value it's set to.  When arg1 is 0, arg2 sets the team score per kill. When arg1 is 1, arg2 sets the time limit in minutes."
+setlobby,str*,,,,,90,Sets the XP lobby preset type. Valid inputs are:  all camo xp unlock curr <nothing> . Inputing nothing will reset the lobby type to normal nonXP lobby.
+elv,str,int,,,,90,Sets invidual XP lobby varribles that use integers. Select the varrible with the str value and set them with the int. Valid str values are: xp loss death time
+elb,str,bool,,,,90,Sets invidual XP lobby varribles that use booleans. Select the varrible with the str value and set them with the bool. Valid str values are: xp trophy camo unlock stat hack master maxlevel lowlevel kick unlockkick
+jetpack,,,,,,,
+randomcamo,,,,,,,
+noclip,,,,,,,
+echerry,,,,,,,
+hide,,,,,,,
+teleport,,,,,,,
+fm,,,,,,,
+ua,,,,,,,
+ap,,,,,,,
+setcamo,,,,,,,

@@ -1,0 +1,31 @@
+Known bugs: 
+NBB's XP Lobby (Menu built on top of the menu base)
+1) None
+
+Command line pro (Menu base related):
+1) Floats that are 3 more places from the decimal may be incorrectly translated into a number.
+2) General keyboard shader alignment issues due to inconistant spacing between letters and symbols.
+3) Integers above 2147483647, due a limmition in GSC, will not input correctly. 
+==================================================================================
+No others are known at the time of posting this Update. Check my NGU and Sevensins Threads for updated infomation on found bugs in Version 3.2.0
+Check those threads for any updates that may fix bugs and add new content to the project. 
+
+Have a bug to report?
+Contact the developer and let him know, he wants to know about everything that dosn't work correctly.:
+To contact the developer:
+Skype: "Nothingbutbread", Message needs to be related to this "NBB's XP Lobby V3.0.0 Remasted".
+Se7ensins and NGU usernames: "Nothingbutbread" - Use PM or comment on thread.
+Youtube: https://www.youtube.com/user/4Nothingbutbread4 - PM or comment on channel. 
+
+Please list off the following info:
+Project version: The version for this project is "3.2.0" .
+Description of the bug:
+- What isn't working?, what did you do whne the bug to happend?
+Conditions that cuase the bug to happen: 
+- Example: "I had the V2.4.1 Smart XP lobby going when the bug I am reporting kept happening."
+Did you make any edits to the code?: 
+What platform are you on? [XBOX360, PS3, PC, WiiU]
+What hardware/software/firmware were you running?:
+
+Before you send in your bugreport check for updates as the bug you are reporting may have been found and patched via update.
+

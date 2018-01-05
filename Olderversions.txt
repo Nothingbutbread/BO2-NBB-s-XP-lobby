@@ -1,0 +1,68 @@
+This file is for all the older versions of NBB's XP Lobby. 
+This being included here so you can download and use ANY NBB's XP Lobby version you choose. 
+Only publicly released vesions are put in here.
+Surport is only granted for XP Lobby Versions that are the newest that are released. 
+
+Most recent version as of this release: V4.0.0
+Version of Command line Pro: V1.0
+
+Source = Only source was included
+Full Release = Source + GSCR + Compiled for PC and Console.
+Release = Only Compiled and/or GSCR was included.
+
+Stability Rating:
+# = You'll never freeze under normal use. Proven to be stable.
+* = General freezeing issues. Can happen "Randomly" sometimes.
+^ = Freezeing is common place after a short peroid of time.
+
+
+
+Legacy Builds /=======================\ They are Unsurported! /============================================================\
+----> Command Line Pro Builds <---------------------------------------------------------------------------------------------
+V4.0.0 Full Release# Command Line Pro version: 1.0
+
+----> Modular Base Builds <-------------------------------------------------------------------------------------------------
+V3.0.1 Full Release# Modular Base version: 1.0
+
+V3.0.0 Full Release# Modular Base version: 1.0
+http://www.mediafire.com/file/u2nd053n3gaj34z/NBBXPLobbyV3+Full+Release+%5BRemasted+Edition%5D.zip
+
+----> Sharks Base Builds <--------------------------------------------------------------------------------------------------
+V2.4.1 Full Release*
+http://www.mediafire.com/file/j1ayp8lb58nmgwa/XPLobbyNBBV2.4.1+Full+Release.zip
+V2.4.0 Full Release^ -Will Freeze you instantly-
+http://www.mediafire.com/file/bdfj81l1t4zd8h4/XPLobbyNBBV2.4+Full+Release.zip
+V2.3.2 Full Release*
+http://www.mediafire.com/file/v5fqx47t050zukt/XPlobbyNBBV2.3.2+Full+Release.zip
+V2.3.1 Full Release*
+http://www.mediafire.com/file/ddg6lkg53usbcqn/XPlobbyNBBV2.3.1+Full+Release.zip
+V2.3.0 Full Release*
+http://www.mediafire.com/file/agpmxl48tjhzn52/XPlobbyNBBV2.3+Full+Release.zip
+V2.2.1 Full Release*
+http://www.mediafire.com/file/86bn6az6xxc62p9/XPlobbyNBBV2.2.1+Full+Release.zip
+V2.2.0 Full Release*
+http://www.mediafire.com/file/yoxlb973k6nbs2m/XPLobbyNBBV2.2+Full+Release.zip
+V2.1.0 Source*
+http://www.mediafire.com/file/77cf3j943ify8c3/XPLobbyNBBV2.1.zip
+V2.0.0 Full Release*
+http://www.mediafire.com/file/1dirukqwzkib8ac/XPLobbyNBBV2.0+Full+Release.zip
+V1.9.5 Source*
+http://www.mediafire.com/download/p8v0xt6dop8e5xx/XPLobbyNBBV1.9.5.zip
+V1.9.2 Source^
+http://www.mediafire.com/download/nkxp188cspwfi74/XPLobbyNBBV1.9.2.zip
+V1.9.1 Source^
+http://www.mediafire.com/download/xktk8pj041n7lcr/XPLobbyNBBV1.9.1.zip
+V1.9.0 Source^
+http://www.mediafire.com/download/hnk9o29t34ipf32/XPLobbyNBBV1.9.zip
+V1.8.1 Source^
+http://www.mediafire.com/download/b4cab3i5hbwqmaw/XPLobbyNBBV1.8.1.zip
+V1.8.0 Source^
+http://www.mediafire.com/download/lbn15cmcmmynkf7/XPLobbyNBBV1.8.zip
+V1.7.0 Source^
+https://www.mediafire.com/?guzj18dd4op7j79
+V1.6.1 Source^
+http://www.mediafire.com/download/sas080a88dh1oew/XPLobbyNBBV1.6.1.zip
+V1.6.0 Source^
+https://www.mediafire.com/?v2hsgw3hx7fo4j1
+V1.0.0 Source#
+http://www.mediafire.com/download/dr6k9ojk2lzeedn/NBBBO2XPLobbyV1.zip

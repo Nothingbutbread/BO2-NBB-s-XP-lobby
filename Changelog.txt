@@ -1,0 +1,89 @@
+V4.0.0 - 2018 Update
+1) New Menu base, completely revamped with unique useage. Much easier to write code for and add to. Programed completely by hand.
+2) Improved code stablity and size. Most functions have been re-written to be better than in previous versions.
+3) Adding in verifciation that was removed in V2.4. Revised system allows for a higher level of control over what cmds at the the disposal of others.
+4) Added surport for in-game change to permission level required to use a command. Host only command.
+5) 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+V3.2.0 - April Update. Not released
+1) Menu Base Updated to V1.1.
+- Stablized the Player menu, menu no longer generates additional values each player list update.
+- Reduced code repetion, reduced filesize and memory useage.
+2) Added more XP Lobby options.
+3) Re-added Whitelist and Blacklist surport
+
+V3.1.2 - Hot fix. Not released
+1) Fix for player menu bugging out when clicking on invalid player spots
+2) Fix for bug where giving all perks too many times can bug out the game
+3) Additional Spelling error fixes.
+
+V3.1.1 - Hot fix. Not released
+1) Fix for player menu sometimes generateing too many varriables.
+2) Removal of several buggy player menu functions.
+3) Player names in the player menu, now only show the name rather than the clantag and name.
+4) Addressed more spelling errors.
+5) Updated errorious bug fixes.
+
+V3.1.0 - Player menu update. Not released 
+1) Added in a player menu
+2) Added in a semi-working theme options
+3) Reworked some XP lobby code.
+4) Addressed more spelling errors. 
+
+V3.0.1 - Hot fix
+1) Fixed The toggle giveing stats toggle
+2) Addressed several spelling errors. Most if not all should be fixed. If any others are found, they will be fixed in V3.1.0
+
+V3.0.0 - Remasted Update/remake
+1) Added in several new lobby types
+2) Removed "Troll Lobby" 
+3) Removed "Player menu"
+4) Removed "Ingame menu and theme adjustment"
+5) Removed Whitelist and Black list surport, May be re-added in future update
+5) Added in Several varrations of the Smart XP lobby reflecting how each worked in V2.3.2, V2.4.1 and V3.0.0
+6) Added in improvements to bot lobbies such as the ability to teleport bots to a specific spot on the map and freeze them there.
+7) Re-coded several orginal functions to make them work better.
+8) Added in Custom menu base layout and removed sharks base code. Better stability
+9) Added in XP Lobby customizer, make your own lobby type with ease.
+10) Added in Info bar and full Info bar intergration for easier navagation and usage of the Menu.
+11) Fixed the freezeing issues present in Prevous versions.
+12) Numerous other changes ... 
+
+///////////////////////////////////////////////////////////////////////////
+V2.4.1 - Hot fix
+1) Fixed a Frezeing issue that would return a drawtext script error
+
+V2.4.0 - Novemeber Update: Offical Surport was been dropped for this menu.
+1) Removed Player Menu - Two bugs eliminated with it
+2) Fixed bug where the menu would show before you open it for the first time in-game.
+3) Added a forge menu, create ramps, platforms, walls, flags, elevators and ziplines with ease.
+4) Additional Player options allowing you to give players general cheats, movement adjustments, and better punishments/trolling.
+5) Removed the Message Menu.
+6) Adjusted The "Smart XP Lobby", It will autokick untill the player is master prestige.
+
+V2.3.2
+1) Disabled score on kill, TDM and FFA will now never end due to players getting 30/75 kills.
+2) Fixed some navigation bugs in the Menu customization submenus.
+3) Added additional text coloring options. 
+4) Added in a shortcut for my personal quick mods set up (Set up my ideal XP lobby with one command).
+5) Reduced variable count [Stability]
+
+V2.3.1
+1) Fixed Bots getting auto-kicked when whitelist is enabled
+
+V2.3.0 
+1) Added Bot lobbies
+2) Added Modify Score per kill and death
+3) Added Adding people to 6 players to the whitelist via in-game commands with out needing to configure anything
+4) Added the General fun menu, imported the fun options from the player menu.
+5) Patched a bug in the Smart xp lobby function that would cause the host to get kicked from the game if he wasn't level 55 or master prestige.
+6) Re-organized several options in the menu
+7) Fixed a rare random game error that would cause the game to force edit.
+8) Somewhat patched unathorized players from getting though the whitelist. If any players get though, they are removed within 5 seconds.
+9) Got rid of additional unneeded code.
+10) You can now clear the lobby scoreboard.
+11) Offical surport for the Player menu is being reduced as its pending removal in V2.4 if offical verification surport can be added with out V1.9.1 and lower freezeing issues. 
+
+ 

@@ -1,0 +1,43 @@
+Hello reader.
+This is a simple guide to installing and using NBB's XP Lobby V4.0.0 and applies to any build using the Command line Pro menu base.
+
+Installing the GSC Mod: Nothing unsual about these builds. You can either dirrectly inject the compiled version or inject the source. Both work normaly.
+	Officaly surrported platform: Jailbroken PS3 on 4.8.2 CFW firmware with offical V1.19 BO2 patch. <Tested and developed on this platform>
+	Unofficaly surported platforms: Jtag/RGHed XBOX360, Modded WiiU, PC. <It should work on but not tested on those platforms>
+	Not surported platforms: OFW PS3s, Non modded XBOX360's and WiiU. <Will not work at all on any of these>
+
+Using the mod:
+	Use the controls to AIM and Melee and hold them at the same time, this will result in the terminal window poping up.
+	While the terminal window is open, using the DPAD keybinds will result in a red shader to move arround over a set of letters and options on the left.
+	Pressing reload while hovering over a letter will add the letter to the terminal's command text.
+	Pressing reload while hovering over a option on the leftside (the shader is longer and thinner there) will run the command the option is bound to.
+	This is the genereal controls, however, the commands bound to the leftside are limmited and only allow to do critial utility functions and run commands.
+	
+	The run cmd option runs the command you've inputed to the command line via pressing on the letters and adding spaces.
+	Commands follow this format:
+	<cmd name> <arg1> <arg2> <arg3> <arg4> <arg5>
+	The cmd name is a single sequence of characters without spaces that idenifies the command being requested for execution.
+	The rest of the words are arguements. In otherwords, things you input to the command you are running that cause it do differnt things.
+	Some commands take up to 5 arguements others take 0 (none). 
+	Some speical commands using the text arg type will cause the command parser to ignore the rest of spaces and take the remaining input that is read as 1 large multiword input.
+	
+	Arguement types:
+	<str> = String, any input you can add to the cmd line works for this. The arguement formation starts when it's reached and ends at the first space.
+	<text> = Text, Any input will work, once this aguement is reached, the rest of the input is taken as a single input ignoreing remaining spaces. This is always last. In cases where it isn't, it overrides it.
+	<int> = Integer, Only a number without a decimal will work. The parsing of this stops once either a space or letter is reached. If a decimal or no number is found, command fails to run.
+	<float> = Float, Any number will work. The parsing stops once either a space or letter is reached. If no number is found, command fails to run.
+	<bool> = Boolean, Any input that starts with either an t or f will work. inputs starting with t will be parsed as true and f is parsed as false. Otherwise the command fails to run.
+	<player> = Player, Any input is valid, When this is reached, so long as atleast one character is found (space included) the refernce to the player you are running commands on is used.
+	
+	You can get the argument types that is taken by using "/help <cmd name>"
+	Using the help command button prints all cammand names, 1 a second. Same as "/pac <float>" with 1 used as the argument.
+	
+	When using /help on a command, the arguments are printed in order as they are used. 
+	Whenever <text> is used, (it should be the right most thing), every arguement type after it is ignored. 
+	
+	Finding commands:
+	printing all commands is the best in-game of finding the commands you want to use. 
+	The csv openable file included with this (used to ensure it works in a lot of spreadsheet applications) has all commands with arguements listed.
+	Includeing more detailed descriptions. A google docuement that you look at though an internet broweser is also avaible with this data.
+	This allows you research you 
+	
