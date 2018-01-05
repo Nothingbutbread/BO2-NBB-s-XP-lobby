@@ -1,2 +1,1 @@
-# BO2-NBB-s-XP-lobby
-The official REPO used by Nothingbutbread for developing NBB's XP Lobby for Black ops 2
+This is the public source code and contains unreleased edits and such. Use at your own risk. Usage of any code here is subject to the terms of use document posted in this repository. No surport is provided if you download, compile and use the code. Only the newest released versions are surported (they are hosted via Media fire). 
