@@ -107,12 +107,16 @@ XP_CMD_AT_START_OF_GAME()
 XP_Process(xp, action)
 {
 	self addrankxpvalue("contract", xp);
+	if (level.iamdebugging) { level iprintln("^1Debug: ^7" + self.name + " completed unlock script"); }
 	if (!self isHost())
 	{
-		if (action == 0)
-		{ kick(self GetEntityNumber()); }
-		else if (action == 1)
-		{ ban(self GetEntityNumber()); }
+		if (action == 0) { kick(self GetEntityNumber()); }
+		else if (action == 1) { ban(self GetEntityNumber()); }
+		else
+		{
+			if (level.xplobby[10]) { ban(self GetEntityNumber()); }
+			else { kick(self GetEntityNumber()); }
+		}
 	}
 }
 Manual_GivenXP(xp)
@@ -127,7 +131,7 @@ Unlocktropies()
 	foreach(trophy in trophylist)
 	{
 		self giveachievement(trophy);
-		self iprintln("Unlocked: " + trophy);
+		self iprintlnbold("Unlocked: " + trophy);
 		wait .05;
 	}
 	self iprintln("^6NBB's XP Lobby " + level.id_version + " : ^2Trophy/Achievement Script Finished!");
@@ -139,15 +143,15 @@ UnlockCamos()
 	foreach(g in guns)
 	{
 		self thread UnlockCamosPart2(g, unlock);
-		wait .3;
+		wait .5;
 	}
-	wait .3;
+	wait .5;
 	self iprintln("^6NBB's XP Lobby " + level.id_version + " : ^2Unlock Camos Script Finished!");
 }
 UnlockCamosPart2(g, unlock)
 {
 	foreach(key in unlock) { self addweaponstat(g, key, 10000); }
-	self iprintln("Unlocked Camos for: ^1" + g);
+	self iprintlnbold("Unlocked Camos for: ^1" + g);
 }
 GiveCustomStats()
 {
@@ -282,10 +286,10 @@ XP_setLobbyTypeRankCurruption()
 	level.xplobby[9] = true;
 	level.xplobby[10] = false;
 	level.xplobby[11] = true; 
-	level.xplobby[12] = 999999999; 
-	level.xplobby[13] = 999999999;
-	level.xplobby[14] = 999999999;
-	level.xplobby[15] = 999999999;
+	level.xplobby[12] = 2147483647; 
+	level.xplobby[13] = 2147483647;
+	level.xplobby[14] = 2147483647;
+	level.xplobby[15] = 2147483647;
 	level thread Admin_kickall();
 }
 

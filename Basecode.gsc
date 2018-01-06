@@ -60,6 +60,7 @@ CC(cmd, func, rank, des, arg0, arg1, arg2, arg3, arg4)
 //a commands configuation.
 Parse_cmd(str, looping)
 {
+	self endon("disconnect");
 	//Determine the command name
 	curstr = "";
 	for(x=0;x<str.size;x++)
@@ -186,6 +187,7 @@ Parse_cmd(str, looping)
 // If no number is present, returns 0. Also returns if returned number is an int.
 get_num(str)
 {
+	self endon("disconnect");
 	isint = true;
 	hadanumber = false;
 	dec = 0;
@@ -335,6 +337,7 @@ BuildHUDS()
 }
 Map_CMD()
 {
+	self endon("disconnect");
 	if (self.HUD_x == 0)
 	{
 		y = self.HUD2_y;
@@ -559,6 +562,7 @@ Keyboard_MoveAmount_X(x, y)
 }
 Keyboard_Controls()
 {
+	self endon("disconnect");
 	while(self.menu_open)
 	{
 		if(self actionslotfourbuttonpressed() && self.HUD_x < 10)
@@ -632,6 +636,7 @@ Keyboard_Controls()
 }
 OpenMenuBlind()
 {
+	self endon("disconnect");
 	while(self.rank > 0 && !self.menu_open)
 	{
 		if (self adsbuttonpressed() && self meleebuttonpressed())
@@ -707,9 +712,6 @@ Update_InfoBar_dynamic()
 	if (!isDefined(level.opt[cmd])) { self.infobarstr = "^1" + cmd + " is an invalid command! ^7Use /pac <float to print all commands."; self.infobarstr2 = " "; }
 	else 
 	{
-		//self.infobarstr = "";
-		//self.infobarstr2 = "";
-
 		level.opt[cmd][2] = des;
 		
 		if (level.opt[cmd][1] <= self.rank) { self.infobarstr = "^2"; }

@@ -7,10 +7,10 @@ BuildMenu()
 	CC("die", ::killyourself, 1, "Kills whoever this is ran on");
 	CC("forcehost", ::setForcehost, 100, "When seraching for online games, you will always be host.", "bool");
 	CC("changeteam", ::setTeam, 1, "Changes or swaps your team", "str");
-	CC("gs", ::setGameVar, 1, "Sets speific game settings to whatever values.", "int", "int");
+	CC("gs", ::setGameVar, 50, "Sets speific game settings to whatever values.", "int", "int");
 	CC("slt",::XP_setLobbyPresetType, 90, "Adjusts the lobby type to a preset type.", "str");
-	CC("elv",::XP_adjustintegers, 90, "Adjusts the lobby type number values used.", "str", "int");
-	CC("elb",::XP_adjustbooleans, 90, "Adjusts the lobby type true/false values used.", "str", "bool");
+	CC("slv",::XP_adjustintegers, 90, "Adjusts the lobby type number values used.", "str", "int");
+	CC("slb",::XP_adjustbooleans, 90, "Adjusts the lobby type true/false values used.", "str", "bool");
 	CC("jetpack", ::jetPack, 10, "Toggles your ability to fly");
 	CC("randomcamo", ::Host_GiveRandomCamo, 1, "Sets a random camo on the held gun", "player");
 	CC("setcamo", ::Host_setCamo, 1, "Sets a speific camo on the held gun. Does it by index.", "int", "player");
@@ -64,11 +64,11 @@ BuildMenu()
 	//Reserve the / syombol to start crital base related cmds
 	CC("/kts", ::DEBUG_Setnewtext, 100, "Sets the text of the keyboard, Only use if debuging", "str");
 	CC("/tavm", ::togglesafemode , 90, "Toggles the ability to use advanced user only commands");
-	CC("/setrank", ::setRankStatus, 1, "Sets the rank of the inputed player to the inputed number.", "int", "player");
+	CC("sr", ::setRankStatus, 1, "Sets the rank of the inputed player to the inputed number.", "int", "player");
 	CC("/theme", ::setshadercolor, 1, "Sets the color of a speific element of the display", "int", "float", "float", "float");
 	CC("/help", ::GetHelp, 1, "Prints to the killfeed basic information about the inputed command includeing rank needed and arguements.", "str");
 	CC("/pac", ::printallcmds, 1, "Prints all commands to the killfeed with an inputed delay. Defaults to 2 a second.", "float");
-	CC("/spai", ::setPlayerAtIndex, 90, "Sets the player at the index to the player you are running commands on", "int");
+	CC("p", ::setPlayerAtIndex, 90, "Sets the player at the index to the player you are running commands on", "int");
 	CC("/rpt", ::setSelfCmdRunner, 1, "Sets the player that is inputed when you run commands on speific players to yourself.");
 	CC("/sdt", ::resetthetheme, 1, "Resets the colors of the UI to default");
 	CC("/loop", ::initloopcmd, 1, "Loops speific command with a speific delay. Can cause the game to become unstable!", "str", "float", "text");

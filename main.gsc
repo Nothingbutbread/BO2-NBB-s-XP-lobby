@@ -39,7 +39,7 @@ init()
 	PrecacheItem("m32_wager_mp");
 	level.strings = []; // Overflow fix
 	level.opt = []; // Option array.
-	level.id_version = "4.0.0 Alpha"; // ID of version
+	level.id_version = "4.0.0 Beta 02"; // ID of version
 	level.iamdebugging = true;
 	level init_global_vars(); // Compact means of defining level varribles. Mostly used for XP lobby vars.
 	level thread BuildMenu(); // Builds the menu.

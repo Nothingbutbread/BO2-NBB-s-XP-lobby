@@ -201,10 +201,10 @@ setRankStatus(index, play)
 	if (play.rank >= self.rank || index > self.rank) { if (!self.issuperuser) { self iprintln("You can only adjust the rank of a player lower thans yours \nand only up to your rank without being host!"); return; } }
 	if (play != self) { self iprintln("Menu rank of " + play.name + " set to " + index); }
 	
-	self iprintln("^2Your menu rank has been set to " + index);
+	play iprintln("^2Your menu rank has been set to " + index);
 	play.rank = index;
 	if (play.rank == 0 && play.menu_open) { play CloseMenu(); }
-	else if (play.rank > 0 && !play.menuinit) { play Menu_Init(); }
+	else if (play.rank > 0 && !play.menuinit) { play thread Menu_Init(); }
 }
 // "/spat <int>" 
 setPlayerAtIndex(index)
