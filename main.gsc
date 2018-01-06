@@ -147,12 +147,3 @@ NBBsFastXPLobbySetup()
 	level.teamscoreperkill = 0;
 	registertimelimit(0,0);
 }
-// Runs additional code should the game be in debugger mode.
-// Debuggermode is not to be toggled from the menu.
-DEBUG_DEBUGMODE()
-{
-	if (level.iamdebugging)
-	{
-		self.safemode = true;
-	}
-}

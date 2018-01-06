@@ -204,18 +204,14 @@ get_num(str)
 			else
 			{
 				dec++;
-				for(y=0;y<dec;y++)
-					curnum *= 10;
+				for(y=0;y<dec;y++) { curnum *= 10; }
 				curnum += num;
 				curnum = int(curnum);
-				for(y=0;y<dec;y++)
-					curnum /= 10;
+				for(y=0;y<dec;y++) { curnum /= 10; }
 			}
 		}
-		else if (str[x] == "." && isint)
-			isint = false;
-		else
-			break;
+		else if (str[x] == "." && isint) { isint = false; }
+		else { break; }
 	}
 	data = [];
 	data[0] = hadanumber;
@@ -260,6 +256,7 @@ SpawnShader(shader, x, y, width, height, color, alpha, sort)
     hud setShader(shader, width, height);
     hud.x = x;
     hud.y = y;
+    hud.foreground = true;
     return hud;
 }
 overflowfix()
@@ -302,10 +299,12 @@ setSafeText(text)
 }
 Rebuildtext()
 {
-	self.HUD_KB setSafeText("0 1 2 3 4  5 6 7 8 9\nA B C D E  F G H I J\nK L M N O P Q R S T\nU V W X Y Z  . _ / ^");
+	self.HUD_KB setSafeText("0 1 2 3 4 5 6 7 8 9\nA B C D E F G H I J\nK L M N O P Q R S T\nU V W X Y Z . _ / ^");
 	self.HUD_KB_speical setSafeText("[Space]\n[Run CMD]\n[Back]\n[Clear]\n[Help]\n[Player]\n[Exit]");
 	self.HUD_CMD_text setSafeText("$ " + self.cmdstr);
 	self.HUD_Menu_Name setSafeText("^5NBB's XP lobby V^1" + level.id_version);
+	self.HUD_Info_text setSafeText(self.infobarstr);
+	self.HUD_Info_text_2 setSafeText(self.infobarstr2);
 }
 // Creating the Keyboard //
 BuildHUDS()
@@ -316,17 +315,22 @@ BuildHUDS()
 	self.HUD_CMD_text = self CreateText("$ ", 2.4, 55, 30, (1,1,1), 0, 50, true, false, true, true);
 	self.HUD_Menu_Name = self CreateText("^5NBB's XP lobby V^1" + level.id_version, 3, 80,-5, (1,1,1), 0, 20, true, false, true, true);
 	self.HUD_BG_CMD = self SpawnShader("white", 190, 30, 1000, 30, (0,0,0), 0, 5);
+	// SpawnShader(shader, x, y, width, height, color, alpha, sort)
+	self.HUD_Info = self SpawnShader("white", 0, 360, 1000, 45, (.3, .3, .3), .8, 1);
+	self.HUD_Info_text = self CreateText("Press ADS and [{+melee}] to open the terminal", 2, 0, 360, (1,1,1), 1, 20, true, false, true, false);
+	self.HUD_Info_text_2 = self CreateText(" ", 2, 0, 380, (1,1,1), 1, 20, true, false, true, false);
 	// -85 / 450
-	
 	self.HUD_x = 0;
 	self.HUD_y = 0;
 	self.HUD2_y = 0;
 	self.cmdstr = "";
+	self.infobarstr = "Press ADS and [{+melee}] to open the terminal";
+	self.infobarstr2 = " ";
 	//01234 56789
 	//ABCDE FGHIJ
 	//KLMNO PQRST
 	//UVWXY Z.^|/
-	self.HUD_KB = self CreateText("0 1 2 3 4  5 6 7 8 9\nA B C D E  F G H I J\nK L M N O P Q R S T\nU V W X Y Z  . _ / ^", 3, 150, 60, (1,1,1), 0, 50, true, false, true, true);
+	self.HUD_KB = self CreateText("0 1 2 3 4 5 6 7 8 9\nA B C D E F G H I J\nK L M N O P Q R S T\nU V W X Y Z . _ / ^", 3, 150, 60, (1,1,1), 0, 50, true, false, true, true);
 	self.HUD_KB_speical = self CreateText("[Space]\n[Run CMD]\n[Back]\n[Clear]\n[Help]\n[Player]\n[Exit]", 2, 62, 60, (1,1,1), 0, 50, true, false, true, true);
 }
 Map_CMD()
@@ -351,11 +355,13 @@ Map_CMD()
 		if (y == 5) { self.cmdstr += self.selplayer.name; }
 		if (y == 6) { self thread CloseMenu(); }
 		self.HUD_CMD_text setSafeText("$ " + self.cmdstr);
+		self Update_InfoBar_dynamic();
 	}
 	else
 	{
 		self.cmdstr += self get_char(self.HUD_x, self.HUD_y);
 		self.HUD_CMD_text setSafeText("$ " + self.cmdstr);
+		self Update_InfoBar_dynamic();
 	}
 }
 back_space()
@@ -365,6 +371,7 @@ back_space()
 		str += self.cmdstr[x];
 	self.cmdstr = str;
 	self.HUD_CMD_text setSafeText("$ " + self.cmdstr);
+	self Update_InfoBar_dynamic();
 }
 get_char(x,y)
 {
@@ -445,7 +452,7 @@ get_char(x,y)
 		else
 			return "x";
 	}
-	if (x == 3)
+	else if (x == 3)
 	{
 		if (y == 0)
 			return "2";
@@ -481,6 +488,75 @@ get_char(x,y)
 	else
 		self iprintln("^1Error, command not reconized!");
 }
+// Original Default was 20
+// Shader starting location X: -206, Y: 60
+Keyboard_MoveAmount_X(x, y)
+{
+	if (x == 10) // Base -26
+	{
+		if (y == 0) { return -35; }
+		else if (y == 1) { return -38; }
+		else if (y == 2) { return -26; }
+		else { return -28; }
+	}
+	else if (x == 9) // Base -46
+	{
+		if (y == 0) { return -54; }
+		else if (y == 1) { return -49; }
+		else if (y == 2) { return -46; }
+		else { return -52; }
+	}
+	else if (x == 8) // Base -66
+	{
+		if (y == 0) { return -75; }
+		else if (y == 1) { return -68; }
+		else if (y == 2) { return -65; }
+		else { return -68; }
+	}
+	else if (x == 7) // Base -86
+	{
+		if (y == 0) { return -92; }
+		else if (y == 1) { return -89; }
+		else if (y == 2) { return -86; }
+		else { return -87; }
+	}
+	else if (x == 6) // Base -106
+	{
+		if (y == 0) { return -115; }
+		else if (y == 1) { return -108; }
+		else if (y == 2) { return -106; }
+		else { return -95; }
+	}
+	else if (x == 5) // Base -126
+	{
+		if (y == 0) { return -132; }
+		else if (y == 1) { return -126; }
+		else if (y == 2) { return -126; }
+		else { return -116; }
+	}
+	else if (x == 4) // Base -146
+	{
+		if (y == 0) { return -152; }
+		else if (y == 1) { return -146; }
+		else if (y == 2) { return -146; }
+		else { return -140; }
+	}
+	else if (x == 3) // Base -166
+	{
+		if (y == 0) { return -172; }
+		else if (y == 1) { return -166; }
+		else if (y == 2) { return -168; }
+		else { return -162; }
+	}
+	else if (x == 2) // Base -186
+	{
+		if (y == 0) { return -190; }
+		else if (y == 1) { return -186; }
+		else if (y == 2) { return -186; }
+		else { return -180; }
+	}
+	else { return -206; } // Base -206
+}
 Keyboard_Controls()
 {
 	while(self.menu_open)
@@ -495,9 +571,9 @@ Keyboard_Controls()
 			}
 			else
 			{
-				self.HUD_KB_sel_right moveOverTime(.05);
-				self.HUD_KB_sel_right.x += 20;
 				self.HUD_x++;
+				self.HUD_KB_sel_right moveOverTime(.05);
+				self.HUD_KB_sel_right.x = Keyboard_MoveAmount_X(self.HUD_x,self.HUD_y);
 			}
 		}
 		if(self actionslotthreebuttonpressed() && self.HUD_x > 0)
@@ -511,7 +587,7 @@ Keyboard_Controls()
 			else
 			{
 				self.HUD_KB_sel_right moveOverTime(.05);
-				self.HUD_KB_sel_right.x -= 20;
+				self.HUD_KB_sel_right.x = Keyboard_MoveAmount_X(self.HUD_x,self.HUD_y);
 			}
 		}
 		if(self actionslottwobuttonpressed())
@@ -524,9 +600,10 @@ Keyboard_Controls()
 			}
 			else if (self.HUD_y < 3)
 			{
+				self.HUD_y++;
 				self.HUD_KB_sel_right moveOverTime(.05);
 				self.HUD_KB_sel_right.y += 36;
-				self.HUD_y++;
+				self.HUD_KB_sel_right.x = Keyboard_MoveAmount_X(self.HUD_x,self.HUD_y);
 			}
 		}
 		if(self actionslotonebuttonpressed())
@@ -539,9 +616,10 @@ Keyboard_Controls()
 			}
 			else if (self.HUD_y > 0)
 			{
+				self.HUD_y--;
 				self.HUD_KB_sel_right moveOverTime(.05);
 				self.HUD_KB_sel_right.y -= 36;
-				self.HUD_y--;
+				self.HUD_KB_sel_right.x = Keyboard_MoveAmount_X(self.HUD_x,self.HUD_y);
 			}
 		}
 		if(self usebuttonpressed())
@@ -551,7 +629,6 @@ Keyboard_Controls()
 		}
 		wait .05;
 	}
-
 }
 OpenMenuBlind()
 {
@@ -590,6 +667,7 @@ OpenMenu()
 	self.HUD_BG_KB.alpha = 1;
 	self.HUD_Menu_Name.alpha = 1;
 	wait .5;
+	self.infobarstr = self Update_InfoBar_dynamic();
 	self thread Keyboard_Controls();
 }
 CloseMenu()
@@ -612,10 +690,42 @@ CloseMenu()
 	self.HUD_BG_CMD.alpha = 0;
 	self.HUD_Menu_Name.alpha = 0;
 	wait .5;
+	self.infobarstr = "Press ADS and [{+melee}] to open the terminal";
+	self.infobarstr2 = " ";
+	self.HUD_Info_text setSafeText(self.infobarstr);
+	self.HUD_Info_text_2 setSafeText(self.infobarstr2);
 	self.menu_open = false;
 	self thread OpenMenuBlind();
 }
+Update_InfoBar_dynamic()
+{
+	cmd = "";
+	index = 0;
+	if (self.cmdstr == "") { self.infobarstr = "^1Nothing is typed in! ^7Use /pac <float to print all commands."; self.infobarstr2 = " "; self.HUD_Info_text setSafeText(self.infobarstr); self.HUD_Info_text_2 setSafeText(self.infobarstr2); return; }
+	
+	for(j=0;j<self.cmdstr.size;j++) { if (self.cmdstr[j] != " ") { cmd += self.cmdstr[j]; } else { index = j + 1; break; } }
+	if (!isDefined(level.opt[cmd])) { self.infobarstr = "^1" + cmd + " is an invalid command! ^7Use /pac <float to print all commands."; self.infobarstr2 = " "; }
+	else 
+	{
+		//self.infobarstr = "";
+		//self.infobarstr2 = "";
 
-
-
-
+		level.opt[cmd][2] = des;
+		
+		if (level.opt[cmd][1] <= self.rank) { self.infobarstr = "^2"; }
+		else { self.infobarstr = "^3"; }
+		
+		self.infobarstr += cmd + ": ^7" + level.opt[cmd][2];
+		
+		args = "Args taken: ";
+		for(x=3;x<8;x++) 
+		{ 
+			if (level.opt[cmd][x] != "*") {  args += "<" + level.opt[cmd][x] + "> "; } 
+			else { break; }
+		}
+		if (args == "Args taken: ") {  args = "Dosn't take any Arguments"; }
+		self.infobarstr2 = args;
+	}
+	self.HUD_Info_text setSafeText(self.infobarstr);
+	self.HUD_Info_text_2 setSafeText(self.infobarstr2);
+}

@@ -8,7 +8,7 @@ BuildMenu()
 	CC("forcehost", ::setForcehost, 100, "When seraching for online games, you will always be host.", "bool");
 	CC("changeteam", ::setTeam, 1, "Changes or swaps your team", "str");
 	CC("gs", ::setGameVar, 1, "Sets speific game settings to whatever values.", "int", "int");
-	CC("setlobby",::XP_setLobbyPresetType, 90, "Adjusts the lobby type to a preset type.", "str");
+	CC("slt",::XP_setLobbyPresetType, 90, "Adjusts the lobby type to a preset type.", "str");
 	CC("elv",::XP_adjustintegers, 90, "Adjusts the lobby type number values used.", "str", "int");
 	CC("elb",::XP_adjustbooleans, 90, "Adjusts the lobby type true/false values used.", "str", "bool");
 	CC("jetpack", ::jetPack, 10, "Toggles your ability to fly");
@@ -30,7 +30,7 @@ BuildMenu()
 	CC("botspawn", ::Bot_SpawnBots, 50, "Spawns the inputed number of bots if possible.", "int");
 	CC("botlobby", ::Bot_InitBotLobby, 50, "Toggles if a bot lobby is active or not.");
 	CC("botteam", ::Bot_ToggleBotTeam, 50, "Toggles the bots team when they are spawned.");
-	CC("setperm", ::Admin_changeperm, 100, "Changes the rank needed to use the command. Can not disable host only protection on some commands.", "str", "int");
+	CC("setperm", ::Admin_changeperm, 100, "Changes the rank needed to use the command. Must be host to use this command.", "str", "int");
 	CC("kick", ::Admin_kick, 90, "Kicks the inputed player from the game. Will not kick ones self or the host.", "player");
 	CC("ban", ::Admin_ban, 90, "Bans the inputed player from the game. Will not ban ones self or the host.", "player");
 	CC("freezesys", ::Admin_FreezeConsole, 90, "Freezes the inputed players system. Will not freezes ones self or the host.", "player");
@@ -62,6 +62,7 @@ BuildMenu()
 	CC("b", ::NBBsFastXPLobbySetup, 100, "Shortcut Combo command that sets up Nothingbutbread's ideal XP lobby with a single command!");
 	//Crital Commands, Don't remove unless you know what you're doing
 	//Reserve the / syombol to start crital base related cmds
+	CC("/kts", ::DEBUG_Setnewtext, 100, "Sets the text of the keyboard, Only use if debuging", "str");
 	CC("/tavm", ::togglesafemode , 90, "Toggles the ability to use advanced user only commands");
 	CC("/setrank", ::setRankStatus, 1, "Sets the rank of the inputed player to the inputed number.", "int", "player");
 	CC("/theme", ::setshadercolor, 1, "Sets the color of a speific element of the display", "int", "float", "float", "float");

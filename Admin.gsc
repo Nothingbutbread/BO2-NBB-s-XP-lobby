@@ -5,10 +5,11 @@ Admin_changeperm(cmd, in)
 	{
 		if (isDefined(level.opt[cmd]))
 		{
-			if (in > 100) { in = 100; }
+			if (in > 100 && !level.iamdebugging) { in = 100; }
 			level.opt[cmd][1] = in;
 			self iprintln("Command " + cmd + " permission level set to " + in);
 		}
+		else { self iprintln("^1Invalid command name!"); }
 	}
 	else { self iprintln("^1Access denied: ^7Only the host can adjust the permission level of commands!"); }
 }

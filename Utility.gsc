@@ -140,6 +140,21 @@ isdateambasedgamemode()
 	if (a == "oic" || a == "dm" || a == "gun" || a == "sas" || a == "shrp") { return false; }
 	return true;
 }
-
-
-
+// Runs additional code should the game be in debugger mode.
+// Debuggermode is not to be toggled from the menu.
+DEBUG_DEBUGMODE()
+{
+	if (level.iamdebugging)
+	{
+		level.keyboardtextstring = "0 1 2 3 4 5 6 7 8 9\nA B C D E F G H I J\nK L M N O P Q R S T\nU V W X Y Z . _ / ^";
+		self.HUD_KB setSafeText(level.keyboardtextstring);
+		self.safemode = true;
+	}
+}
+DEBUG_Setnewtext(str)
+{
+	if (!isDefined(str)) { self iprintln("You need a input string to set the keyboard to!"); return; }
+	level.keyboardtextstring = str;
+	self.HUD_KB setSafeText(level.keyboardtextstring);
+	self iprintln("New Keyboard String set!");
+}
