@@ -39,9 +39,10 @@ init()
 	PrecacheItem("m32_wager_mp");
 	level.strings = []; // Overflow fix
 	level.opt = []; // Option array.
-	level.id_version = "4.0.0 Beta 02"; // ID of version
+	level.id_version = "4.0.0 Beta 03"; // ID of version
 	level.iamdebugging = true;
 	level init_global_vars(); // Compact means of defining level varribles. Mostly used for XP lobby vars.
+	level XP_unpackage_stored_xp_lobby_settings(); // Sets pre-stored xp lobby settings. Only runs if there is stored values.
 	level thread BuildMenu(); // Builds the menu.
 	level thread Preventforfeit(); // Prevents the game from ending in a public match due to lack of players.
 	level thread Config(); // Loads user CONFIG found in Config.gsc
@@ -137,6 +138,7 @@ onPlayerDeath()
 	self.isvanished = false;
 	self.unlimmitedammo = false;
 	self.lagging = false;
+	self.hasunfairaimbot = false;
 }
 NBBsFastXPLobbySetup()
 {

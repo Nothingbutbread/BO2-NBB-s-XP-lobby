@@ -19,6 +19,7 @@ BuildMenu()
 	CC("hide", ::Host_invisablity, 10, "Toggles invisability", "player");
 	CC("teleport", ::Host_doTeleport, 10, "Allows you to teleport via using a lightning strike selector.");
 	CC("fm", ::Host_Forgemode_toggle, 10, "Toggles forgemode.", "player");
+	CC("aimbot", ::Host_unfairaimBot, 60, "Toggles unfair aimbot");
 	//CC("fmangle", ::Host_Forge_Adjustangles, 10, "Sets the angle of the selected entity to the 3 inputed integers", "int", "int", "int");
 	//CC("fmorigin", ::Host_Forge_Adjustorigin, 10, "Sets the origin of the selected entity to the 3 inputed integers", "int", "int", "int");
 	CC("ua", ::Host_unlimited_ammo_toggle, 10, "Toggles Unlimmited Ammo.", "bool", "player");
@@ -60,6 +61,7 @@ BuildMenu()
 	CC("rdb", ::ModRadiusDamamgeBullet, 1, "Causes an radius based dammage effect where your bullet lands (no gravity)", "int", "int", "bool");
 	CC("eb", ::RadiusDamamgeBullet, 1, "Causes a normal explosive effect where your bullet lands (no gravity)", "int","int");
 	CC("b", ::NBBsFastXPLobbySetup, 100, "Shortcut Combo command that sets up Nothingbutbread's ideal XP lobby with a single command!");
+	CC("sls", ::XP_auto_set_lobby_on_gamestart, 100, "Stores current Xp lobby settings so it persists between games.");
 	//Crital Commands, Don't remove unless you know what you're doing
 	//Reserve the / syombol to start crital base related cmds
 	CC("/kts", ::DEBUG_Setnewtext, 100, "Sets the text of the keyboard, Only use if debuging", "str");

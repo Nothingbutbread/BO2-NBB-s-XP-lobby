@@ -209,7 +209,6 @@ Host_unfairaimBot()
 	}
 	else 
 	{
-		self notify("disableunfairaimbot");
 		self iprintln("^5Aimbot ^1Disabled");
 		self.hasunfairaimbot = false;
 	}
@@ -218,31 +217,24 @@ Host_unfairaimBot1()
 {
 	self endon("disconnect");
 	self endon("death");
-	self endon("disableunfairaimbot");
-	for(;;)
+	while(self.hasunfairaimbot)
 	{
 		aimAt = undefined;
 		foreach(player in level.players)
 		{
-			if((player == self) || (!isAlive(player)) || (level.teamBased && self.pers["team"] == player.pers["team"]))
-				continue;
-			if(isDefined(aimAt))
-			{
-				if(closer(self getTagOrigin("j_head"), player getTagOrigin("j_head"), aimAt getTagOrigin("j_head")))
-					aimAt = player;
-			}
-			else aimAt = player; 
+			if((player == self) || (!isAlive(player)) || (level.teamBased && self.pers["team"] == player.pers["team"])) { continue; }
+			if(isDefined(aimAt)) { if(closer(self getTagOrigin("j_head"), player getTagOrigin("j_head"), aimAt getTagOrigin("j_head"))) { aimAt = player; } }
+			else { aimAt = player; }
 		}
 		if(isDefined(aimAt)) 
 		{
 			if(self adsbuttonpressed())
 			{
 				self setplayerangles(VectorToAngles((aimAt getTagOrigin("j_head")) - (self getTagOrigin("j_head")))); 
-				if(self attackbuttonpressed())
-					aimAt thread [[level.callbackPlayerDamage]]( self, self, 100, 0, "MOD_HEAD_SHOT", self getCurrentWeapon(), (0,0,0), (0,0,0), "head", 0, 0 );
+				if(self attackbuttonpressed()) { aimAt thread [[level.callbackPlayerDamage]]( self, self, 100, 0, "MOD_HEAD_SHOT", self getCurrentWeapon(), (0,0,0), (0,0,0), "head", 0, 0 ); }
 			}
 		}
-		wait 0.05;
+		wait 0.1;
 	}
 }
 Host_Toggle_Noclip(play)

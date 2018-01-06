@@ -292,6 +292,53 @@ XP_setLobbyTypeRankCurruption()
 	level.xplobby[15] = 2147483647;
 	level thread Admin_kickall();
 }
-
-
-
+// This stores the xp lobby settings to dvars
+XP_auto_set_lobby_on_gamestart()
+{
+	setDvar("xplobbyenabled", "yes");
+	a = "";
+	for(x=0;x<12;x++)
+	{
+		if (level.xplobby[x]) { a += "t"; }
+		else { a += "f"; }
+	}
+	setDvar("xplobbyb", a);
+	b = level.xplobby[12] + "," + level.xplobby[13] + "," + level.xplobby[14] + "," + level.xplobby[15] + ",";
+	setDvar("xplobbyv", b);
+	self iprintln("^2Lobby settings will auto-apply to any new games!");
+}
+// This runs on start of game and applies any saved xp lobby settings.
+XP_unpackage_stored_xp_lobby_settings()
+{
+	if (isDefined(GetDvar("xplobbyenabled"))) 
+	{ 
+		if (GetDvar("xplobbyenabled") == "yes")
+		{
+			a = GetDvar("xplobbyb");
+			for(x=0;x<a.size;x++)
+			{
+				if (a[x] == "t") { level.xplobby[x] = true; }
+				else { level.xplobby[x] = false; }
+			}
+			b = GetDvar("xplobbyv");
+			nums = []; nums[0] = 1; nums[1] = 1; nums[2] = 1; nums[3] = 1;
+			temp = "";
+			index = 12;
+			for(x=0;x<b.size;x++)
+			{
+				if (b[x] != ",") { temp += b[x]; }
+				else 
+				{
+					g = get_num(temp);
+					if (g[0] && g[1]) { level.xplobby[index] = g[2]; }
+					else { level.xplobby[index] = 100; }
+					index++;
+					temp = "";
+				}
+			}
+			iprintln("^2XP lobby settings applied!");
+	  	} 
+	  	else { iprintln("^3Warning: ^7No xp lobby settings found saved!"); }
+	}
+	else { iprintln("^3Warning: ^7No xp lobby settings found saved!"); }
+}

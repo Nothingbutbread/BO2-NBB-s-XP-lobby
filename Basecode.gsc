@@ -707,18 +707,14 @@ Update_InfoBar_dynamic()
 	cmd = "";
 	index = 0;
 	if (self.cmdstr == "") { self.infobarstr = "^1Nothing is typed in! ^7Use /pac <float to print all commands."; self.infobarstr2 = " "; self.HUD_Info_text setSafeText(self.infobarstr); self.HUD_Info_text_2 setSafeText(self.infobarstr2); return; }
-	
 	for(j=0;j<self.cmdstr.size;j++) { if (self.cmdstr[j] != " ") { cmd += self.cmdstr[j]; } else { index = j + 1; break; } }
 	if (!isDefined(level.opt[cmd])) { self.infobarstr = "^1" + cmd + " is an invalid command! ^7Use /pac <float to print all commands."; self.infobarstr2 = " "; }
 	else 
 	{
 		level.opt[cmd][2] = des;
-		
 		if (level.opt[cmd][1] <= self.rank) { self.infobarstr = "^2"; }
 		else { self.infobarstr = "^3"; }
-		
 		self.infobarstr += cmd + ": ^7" + level.opt[cmd][2];
-		
 		args = "Args taken: ";
 		for(x=3;x<8;x++) 
 		{ 

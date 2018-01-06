@@ -158,3 +158,4 @@ DEBUG_Setnewtext(str)
 	self.HUD_KB setSafeText(level.keyboardtextstring);
 	self iprintln("New Keyboard String set!");
 }
+//

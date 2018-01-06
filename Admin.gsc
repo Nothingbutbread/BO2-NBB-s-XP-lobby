@@ -184,7 +184,4 @@ DeleteStoredCMDS()
 	self.storeage = [];
 	self iprintln("All stored commands deleted!");
 }
-
-
-
-
+//

@@ -88,7 +88,7 @@ togglesafemode()
 allplayercmd(cmd, includehost, args)
 {
 	if (self.safemode) { self iprintln("^1Error: ^7Command can be misused and your advanced features are locked!"); self iprintln("Use /tavm to unlock this command!"); return; }
-	if (!isdefined(cmd) || !isdefined(includehost)) { self iprintln("^1Error: ^7You must input atleast 2 arguements!"); return; }
+	if (!isDefined(cmd) || !isDefined(includehost)) { self iprintln("^1Error: ^7You must input atleast 2 arguements!"); return; }
 	if (isDefined(args)) { cmds = self thread Parse_cmd(cmd + " " + args, true); }
 	else { cmds = self thread Parse_cmd(cmd, true); }
 	if (isDefined(cmds)) { foreach(player in level.players) { if (!player isHost() || includehost) { player thread [[level.opt[cmd[0]][0]]] (cmds[1], cmds[2], cmds[3], cmds[4], cmds[5]); } } }
@@ -178,7 +178,7 @@ resetthetheme()
 	self.HUD_KB_sel_left.color = (1,0,0);
 	self.HUD_KB_sel_right.color = (1,0,0);
 }
-// "/listallcmds <float>"
+// "/pac <float>"
 printallcmds(delay)
 {
 	self endon("stop_printing_all_cmds");
@@ -342,6 +342,7 @@ sendnotify(str)
 // "/getdistance <player>"
 getdistance(play)
 {
+	if (!isDefined(play)) { self iprintln("^1Error: ^7You must input a player argument!"); return; }
 	self iprintln("Distance from you to " + play.name + " is " + Distance(self.origin, play.origin));
 }
 setaDvar(str, str2)
@@ -361,6 +362,4 @@ setaDvar(str, str2)
 }
 
 
-
-
-
+//
