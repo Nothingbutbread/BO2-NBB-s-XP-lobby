@@ -258,7 +258,7 @@ SpawnShader(shader, x, y, width, height, color, alpha, sort)
     hud setShader(shader, width, height);
     hud.x = x;
     hud.y = y;
-    hud.foreground = true;
+   // hud.foreground = true;
     return hud;
 }
 overflowfix()
@@ -706,7 +706,7 @@ Update_InfoBar_dynamic()
 {
 	cmd = "";
 	index = 0;
-	if (self.cmdstr == "") { self.infobarstr = "^1Nothing is typed in! ^7Use /pac <float to print all commands."; self.infobarstr2 = " "; self.HUD_Info_text setSafeText(self.infobarstr); self.HUD_Info_text_2 setSafeText(self.infobarstr2); return; }
+	if (self.cmdstr == "") { self.infobarstr = "^1Nothing is typed in! ^7Use /pac <float> to print all commands."; self.infobarstr2 = " "; self.HUD_Info_text setSafeText(self.infobarstr); self.HUD_Info_text_2 setSafeText(self.infobarstr2); return; }
 	for(j=0;j<self.cmdstr.size;j++) { if (self.cmdstr[j] != " ") { cmd += self.cmdstr[j]; } else { index = j + 1; break; } }
 	if (!isDefined(level.opt[cmd])) { self.infobarstr = "^1" + cmd + " is an invalid command! ^7Use /pac <float to print all commands."; self.infobarstr2 = " "; }
 	else 

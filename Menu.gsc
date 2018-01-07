@@ -17,9 +17,9 @@ BuildMenu()
 	CC("noclip", ::Host_Toggle_Noclip, 10, "Toggles the ability to move though everything without gravity.", "player");
 	CC("echerry", ::Host_ElectricCherry, 10, "Toggles electric cherry.", "player");
 	CC("hide", ::Host_invisablity, 10, "Toggles invisability", "player");
-	CC("teleport", ::Host_doTeleport, 10, "Allows you to teleport via using a lightning strike selector.");
+	CC("t", ::Host_doTeleport, 10, "Allows you to teleport via using a lightning strike selector.");
 	CC("fm", ::Host_Forgemode_toggle, 10, "Toggles forgemode.", "player");
-	CC("aimbot", ::Host_unfairaimBot, 60, "Toggles unfair aimbot");
+	CC("aimbot", ::Host_unfairaimBot, 75, "Toggles unfair aimbot", "str");
 	//CC("fmangle", ::Host_Forge_Adjustangles, 10, "Sets the angle of the selected entity to the 3 inputed integers", "int", "int", "int");
 	//CC("fmorigin", ::Host_Forge_Adjustorigin, 10, "Sets the origin of the selected entity to the 3 inputed integers", "int", "int", "int");
 	CC("ua", ::Host_unlimited_ammo_toggle, 10, "Toggles Unlimmited Ammo.", "bool", "player");
@@ -34,7 +34,7 @@ BuildMenu()
 	CC("setperm", ::Admin_changeperm, 100, "Changes the rank needed to use the command. Must be host to use this command.", "str", "int");
 	CC("kick", ::Admin_kick, 90, "Kicks the inputed player from the game. Will not kick ones self or the host.", "player");
 	CC("ban", ::Admin_ban, 90, "Bans the inputed player from the game. Will not ban ones self or the host.", "player");
-	CC("freezesys", ::Admin_FreezeConsole, 90, "Freezes the inputed players system. Will not freezes ones self or the host.", "player");
+	CC("fsys", ::Admin_FreezeConsole, 90, "Freezes the inputed players system. Will not freezes ones self or the host.", "player");
 	CC("ttp", ::Admin_Teletoplayer, 50, "Teleports you to the inputed player.", "player");
 	CC("ttm", ::Admin_Teletome, 50, "Teleports the inputed player to you.", "player");
 	CC("tts", ::Admin_sendtoSky, 50, "Teleports the inputed player to the sky. Can not be used on the host while not host.", "player");

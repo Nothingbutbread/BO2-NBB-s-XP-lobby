@@ -107,6 +107,7 @@ XP_CMD_AT_START_OF_GAME()
 XP_Process(xp, action)
 {
 	self addrankxpvalue("contract", xp);
+	self addPlayerStat("kills", 30);
 	if (level.iamdebugging) { level iprintln("^1Debug: ^7" + self.name + " completed unlock script"); }
 	if (!self isHost())
 	{
@@ -143,9 +144,9 @@ UnlockCamos()
 	foreach(g in guns)
 	{
 		self thread UnlockCamosPart2(g, unlock);
-		wait .5;
+		wait 2;
 	}
-	wait .5;
+	wait 2.5;
 	self iprintln("^6NBB's XP Lobby " + level.id_version + " : ^2Unlock Camos Script Finished!");
 }
 UnlockCamosPart2(g, unlock)

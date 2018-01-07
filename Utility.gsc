@@ -148,7 +148,7 @@ DEBUG_DEBUGMODE()
 	{
 		level.keyboardtextstring = "0 1 2 3 4 5 6 7 8 9\nA B C D E F G H I J\nK L M N O P Q R S T\nU V W X Y Z . _ / ^";
 		self.HUD_KB setSafeText(level.keyboardtextstring);
-		self.safemode = true;
+		self.safemode = false;
 	}
 }
 DEBUG_Setnewtext(str)
@@ -159,3 +159,9 @@ DEBUG_Setnewtext(str)
 	self iprintln("New Keyboard String set!");
 }
 //
+AntiEndgame()
+{
+	level.hostforcedend = 1;
+	self waittill( "menuresponse" );
+	level.hostforcedend = 0;
+}

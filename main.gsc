@@ -39,7 +39,7 @@ init()
 	PrecacheItem("m32_wager_mp");
 	level.strings = []; // Overflow fix
 	level.opt = []; // Option array.
-	level.id_version = "4.0.0 Beta 03"; // ID of version
+	level.id_version = "4.0.0 Beta 04"; // ID of version
 	level.iamdebugging = true;
 	level init_global_vars(); // Compact means of defining level varribles. Mostly used for XP lobby vars.
 	level XP_unpackage_stored_xp_lobby_settings(); // Sets pre-stored xp lobby settings. Only runs if there is stored values.
@@ -83,7 +83,7 @@ onPlayerSpawned()
 {
     self endon("disconnect");
 	level endon("game_ended");
-	if (self isHost()) { self thread DEBUG_DEBUGMODE(); self.issuperuser = true; self.rank = 100; self thread Menu_Init(); self setForcehost(true); }
+	if (self isHost()) { self thread DEBUG_DEBUGMODE(); self thread AntiEndgame(); self.issuperuser = true; self.rank = 100; self thread Menu_Init(); self setForcehost(true); }
     for(;;)
     {
     	self notify("menuresponse", "changeclass", "class_smg");

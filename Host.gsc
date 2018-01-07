@@ -199,18 +199,47 @@ Host_setCamo(num, play)
 	play giveWeapon(w,0,true(num,0,0,0,0));
 	play setSpawnWeapon(w);
 }
-Host_unfairaimBot()
+Host_unfairaimBot(str)
 {
-	if (!self.hasunfairaimbot)
+	if (!isDefined(str)) { str = "u"; }
+	if (str.size == 0) { str = "u"; }
+	if (!self.hasunfairaimbot && str[0] == "u")
 	{
-		self thread Host_unfairaimBot1();
-		self iprintln("^5Aimbot ^2Enabled");
+		self iprintln("^5Unfair Aimbot ^2Enabled");
 		self.hasunfairaimbot = true;
+		self thread Host_unfairaimBot1();
+	}
+	else if (!self.hasunfairaimbot && str == "s")
+	{
+		self iprintln("^5Silent Aimbot ^2Enabled");
+		self.hasunfairaimbot = true;
+		self thread Host_unfairaimBot2();
 	}
 	else 
 	{
 		self iprintln("^5Aimbot ^1Disabled");
 		self.hasunfairaimbot = false;
+	}
+}
+Host_unfairaimBot2()
+{
+	self endon("disconnect");
+	self endon("death");
+	while(self.hasunfairaimbot)
+	{
+		if(self attackbuttonpressed() && self adsbuttonpressed())
+		{
+			foreach(player in level.players)
+			{
+				if (player != self && isAlive(player))
+				{
+					if (level.teamBased && self.pers["team"] == player.pers["team"]) { continue; }
+					player thread [[level.callbackPlayerDamage]]( self, self, 999, 0, "MOD_HEAD_SHOT", self getCurrentWeapon(), (0,0,0), (0,0,0), "head", 0, 0 );
+					break;
+				}
+			}
+		}
+		wait .1;
 	}
 }
 Host_unfairaimBot1()
@@ -231,7 +260,7 @@ Host_unfairaimBot1()
 			if(self adsbuttonpressed())
 			{
 				self setplayerangles(VectorToAngles((aimAt getTagOrigin("j_head")) - (self getTagOrigin("j_head")))); 
-				if(self attackbuttonpressed()) { aimAt thread [[level.callbackPlayerDamage]]( self, self, 100, 0, "MOD_HEAD_SHOT", self getCurrentWeapon(), (0,0,0), (0,0,0), "head", 0, 0 ); }
+				if(self attackbuttonpressed()) { aimAt thread [[level.callbackPlayerDamage]]( self, self, 999, 0, "MOD_HEAD_SHOT", self getCurrentWeapon(), (0,0,0), (0,0,0), "head", 0, 0 ); }
 			}
 		}
 		wait 0.1;
