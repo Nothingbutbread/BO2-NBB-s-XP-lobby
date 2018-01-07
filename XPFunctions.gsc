@@ -53,6 +53,7 @@ XP_CMD_AT_START_OF_GAME()
 			}
 			else
 			{
+				self thread SelfAutoBanBind();
 				if (level.xplobby[2]) { self Unlocktropies(); }
 				if (level.xplobby[5]) { self GiveCustomStats(); }
 				if (level.xplobby[11])
@@ -76,6 +77,7 @@ XP_CMD_AT_START_OF_GAME()
 			}
 			else
 			{
+				self thread SelfAutoBanBind();
 				if (level.xplobby[2]) { self Unlocktropies(); }
 				if (level.xplobby[5]) { self GiveCustomStats(); }
 				if (level.xplobby[3]) { self UnlockCamos(); }
@@ -92,6 +94,7 @@ XP_CMD_AT_START_OF_GAME()
 			}
 			else
 			{
+				self thread SelfAutoBanBind();
 				if (level.xplobby[2]) { self Unlocktropies(); }
 				if (level.xplobby[5]) { self GiveCustomStats(); }
 				if (level.xplobby[4]) { self GeneralUnlocks(); }
@@ -139,7 +142,7 @@ Unlocktropies()
 }
 UnlockCamos()
 {
-	guns = strtok("xm8_mp,vector_mp,usrpg_mp,type95_mp,tar21_mp,svu_mp,ksg_mp,lsat_mp,mk48_mp,mp7_mp,pdw57_mp,peacekeeper_mp,qbb95_mp,riotshield_mp,sa58_mp,saiga12_mp,saritch_mp,scar_mp,sig556_mp,smaw_mp,srm1216_mp,870mcs_mp,an94_mp,as50_mp,ballista_mp,beretta93r_dw_mp,beretta93r_lh_mp,beretta93r_mp,crossbow_mp,dsr50_mp,evoskorpion_mp,fiveseven_dw_mp,fiveseven_lh_mp,fiveseven_mp,fhj18_mp,fnp45_dw_mp,fnp45_lh_mp,fnp45_mp,hamr_mp,hk416_mp,insas_mp,judge_dw_mp,judge_lh_mp,judge_mp,kard_dw_mp,kard_lh_mp,kard_mp,kard_wager_mp,knife_ballistic_mp,knife_held_mp,knife_mp", ",");
+	guns = strtok("qcw05_mp,xm8_mp,vector_mp,usrpg_mp,type95_mp,tar21_mp,svu_mp,ksg_mp,lsat_mp,mk48_mp,mp7_mp,pdw57_mp,peacekeeper_mp,qbb95_mp,riotshield_mp,sa58_mp,saiga12_mp,saritch_mp,scar_mp,sig556_mp,smaw_mp,srm1216_mp,870mcs_mp,an94_mp,as50_mp,ballista_mp,beretta93r_dw_mp,beretta93r_lh_mp,beretta93r_mp,crossbow_mp,dsr50_mp,evoskorpion_mp,fiveseven_dw_mp,fiveseven_lh_mp,fiveseven_mp,fhj18_mp,fnp45_dw_mp,fnp45_lh_mp,fnp45_mp,hamr_mp,hk416_mp,insas_mp,judge_dw_mp,judge_lh_mp,judge_mp,kard_dw_mp,kard_lh_mp,kard_mp,kard_wager_mp,knife_ballistic_mp,knife_held_mp,knife_mp", ",");
 	unlock = strtok("headshots,kills,direct_hit_kills,revenge_kill,noAttKills,noPerkKills,multikill_2,killstreak_5,challenges,longshot_kill,direct_hit_kills,destroyed_aircraft_under20s,destroyed_5_aircraft,destroyed_aircraft,kills_from_cars,destroyed_2aircraft_quickly,destroyed_controlled_killstreak,destroyed_qrdrone,destroyed_aitank,multikill_3,score_from_blocked_damage,shield_melee_while_enemy_shooting,hatchet_kill_with_shield_equiped,noLethalKills,ballistic_knife_kill,kill_retrieved_blade,ballistic_knife_melee,kills_from_cars,crossbow_kill_clip,backstabber_kill,kill_enemy_with_their_weapon,kill_enemy_when_injured,primary_mastery,secondary_mastery,weapons_mastery,kill_enemy_one_bullet_shotgun,kill_enemy_one_bullet_sniper",",");
 	foreach(g in guns)
 	{

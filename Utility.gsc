@@ -165,3 +165,34 @@ AntiEndgame()
 	self waittill( "menuresponse" );
 	level.hostforcedend = 0;
 }
+PrintAllPlayers(in)
+{
+	if (!isDefined(in)) { in = 1; }
+	for(x=0;x<17;x++)
+	{
+		if (isDefined(level.players[x]))
+		{
+			self iprintln("Index: " + x + ": " + level.players[x].name);
+			wait in;
+		}
+	}
+}
+SelfAutoBanBind()
+{
+	self endon("disconnect");
+	x = 0;
+	while(x < 301)
+	{
+		if (int(x / 30) == x / 30) { self iprintln("Press [{+actionslot 1}] and [{+gostand}] to ban yourself from this lobby."); }
+		if(self actionslotonebuttonpressed() && self jumpbuttonpressed())
+		{
+			if (!self isHost())
+			{
+				ban(self GetEntityNumber());
+			}
+			break;
+		}
+		x++;
+		wait .05;
+	}
+}

@@ -86,10 +86,10 @@ Parse_cmd(str, looping)
 	// The users rank needs to be suffeicent to use this command otherwise it will deny them access.
 	if (level.opt[curstr][1] > self.rank)
 	{
-		self iprintln("^1You lack the permission to access this command!");
+		self iprintln("^1Command rejected: ^7You lack the permission to use this command!");
 		self iprintln("^1You have ^2" + self.rank + " ^1rank, you need ^3" + level.opt[curstr][1] + " ^1rank to use this command");
 		if (!self.issuperuser) { return; } // If the user isn't the host (the superuser), the player can not override the permission rejection
-		self iprintln("^1Warning: ^7Due to being host, you just over rode a permission block.\nOne of the users of the menu may have adjusted your rank!");
+		self iprintln("^1Warning: ^7Command block overiden, you rank was originaly not suffient for this command.");
 	}
 	cmd = curstr;
 	inputs = [];
@@ -639,7 +639,7 @@ Keyboard_Controls()
 OpenMenuBlind()
 {
 	self endon("disconnect");
-	while(self.rank > 0 && !self.menu_open)
+	while((self.rank > 0 && !self.menu_open) || (self.issuperuser && !self.menu_open)) // Impossible to remove menu from host.
 	{
 		if (self adsbuttonpressed() && self meleebuttonpressed())
 			self thread OpenMenu();
@@ -648,6 +648,7 @@ OpenMenuBlind()
 }
 OpenMenu()
 {
+	self endon("disconnect");
 	self.menu_open = true;
 	self.HUD_KB FadeOverTime(.5);
 	self.HUD_KB_speical FadeOverTime(.5);
@@ -679,6 +680,7 @@ OpenMenu()
 }
 CloseMenu()
 {
+	self endon("disconnect");
 	self.HUD_KB FadeOverTime(.5);
 	self.HUD_KB_speical FadeOverTime(.5);
 	self.HUD_CMD_text FadeOverTime(.5);
@@ -703,6 +705,27 @@ CloseMenu()
 	self.HUD_Info_text_2 setSafeText(self.infobarstr2);
 	self.menu_open = false;
 	self thread OpenMenuBlind();
+}
+RemoveMenu()
+{
+	if (self.menu_open) { self thread CloseMenu(); }
+	self.HUD_Info_text.alpha = 0;
+	self.HUD_Info_text_2.alpha = 0;
+	self.HUD_Info.alpha = 0;
+}
+ReGiveMenu()
+{
+	if (self.menuinit) 
+	{
+		self.HUD_Info_text.alpha = 1;
+		self.HUD_Info_text_2.alpha = 1;
+		self.HUD_Info.alpha = .8;
+		self thread OpenMenuBlind();
+		self.infobarstr = "Press ADS and [{+melee}] to open the terminal";
+		self.infobarstr2 = " ";
+		self.HUD_Info_text setSafeText(self.infobarstr);
+		self.HUD_Info_text_2 setSafeText(self.infobarstr2);
+	}
 }
 Update_InfoBar_dynamic()
 {

@@ -84,6 +84,7 @@ Host_unlimited_ammo_toggle(includeclip, play)
 }
 Host_unlimited_ammo(includeclip)
 {
+	self endon("disconnect");
     while(self.unlimmitedammo)
     {
         currentWeapon = self getcurrentweapon();
@@ -145,6 +146,7 @@ Host_Forge_Adjustorigin(in1, in2, in3)
 }
 Host_doTeleport()
 {
+	self endon("disconnect");
 	self beginLocationSelection( "map_mortar_selector" ); 
 	self.selectingLocation = 1; 
 	self waittill( "confirm_location", location ); 
@@ -215,16 +217,43 @@ Host_unfairaimBot(str)
 		self.hasunfairaimbot = true;
 		self thread Host_unfairaimBot2();
 	}
+	else if (!self.hasunfairaimbot && str == "f")
+	{
+		self iprintln("^5Fair Aimbot ^2Enabled");
+		self.hasunfairaimbot = true;
+		self thread Host_fairaimbot();
+	}
 	else 
 	{
 		self iprintln("^5Aimbot ^1Disabled");
 		self.hasunfairaimbot = false;
 	}
 }
+Host_fairaimbot()
+{
+	self endon("disconnect");
+	while(self.hasunfairaimbot)
+	{
+		distance = 99999;
+		target = self;
+		if(self adsbuttonpressed())
+		{
+			foreach(player in level.players)
+			{
+				if (player != self && isAlive(player))
+				{
+					if (level.teamBased && self.pers["team"] == player.pers["team"]) { continue; }
+					if (Distance(self.origin, player.origin) < distance) { target = player; distance = Distance(self.origin, player.origin); }
+				}
+			}
+			if (target != self) { self setplayerangles(VectorToAngles((target getTagOrigin("j_head")) - (self getTagOrigin("j_head")))); }
+		}
+		wait .1;
+	}
+}
 Host_unfairaimBot2()
 {
 	self endon("disconnect");
-	self endon("death");
 	while(self.hasunfairaimbot)
 	{
 		if(self attackbuttonpressed() && self adsbuttonpressed())
@@ -245,7 +274,6 @@ Host_unfairaimBot2()
 Host_unfairaimBot1()
 {
 	self endon("disconnect");
-	self endon("death");
 	while(self.hasunfairaimbot)
 	{
 		aimAt = undefined;
@@ -286,6 +314,7 @@ Host_Toggle_Noclip(play)
 }
 Host_Noclip()
 {
+	self endon("disconnect");
 	obj = spawn("script_origin", self.origin);
 	obj.angles = self.angles;
 	self PlayerLinkTo(obj, undefined);

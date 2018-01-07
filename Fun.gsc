@@ -12,7 +12,7 @@ EnableRangeFinderHUD()
 	self thread RangeFinderEffect();
 }
 DisableRangeFinderHUD() { self.rangefinder = false; wait .2; self.rangefinderHUD destroy(); }
-RangeFinderEffect() { while(self.rangefinder) { self.rangefinderHUD setValue(int(Distance(self TraceShot(), self getEye()))); wait .1; } }
+RangeFinderEffect() { self endon("disconnect"); while(self.rangefinder) { self.rangefinderHUD setValue(int(Distance(self TraceShot(), self getEye()))); wait .1; } }
 // TraceShot()
 
 

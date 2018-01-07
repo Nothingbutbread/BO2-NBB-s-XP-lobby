@@ -19,10 +19,10 @@ BuildMenu()
 	CC("hide", ::Host_invisablity, 10, "Toggles invisability", "player");
 	CC("t", ::Host_doTeleport, 10, "Allows you to teleport via using a lightning strike selector.");
 	CC("fm", ::Host_Forgemode_toggle, 10, "Toggles forgemode.", "player");
-	CC("aimbot", ::Host_unfairaimBot, 75, "Toggles aimbot. Defults to unfair, input s for silent aimbot.", "str");
+	CC("aimbot", ::Host_unfairaimBot, 75, "Toggles aimbot. Defults to unfair, input s = silent, f = fair, u = unfair", "str");
 	//CC("fmangle", ::Host_Forge_Adjustangles, 10, "Sets the angle of the selected entity to the 3 inputed integers", "int", "int", "int");
 	//CC("fmorigin", ::Host_Forge_Adjustorigin, 10, "Sets the origin of the selected entity to the 3 inputed integers", "int", "int", "int");
-	CC("ua", ::Host_unlimited_ammo_toggle, 10, "Toggles Unlimmited Ammo.", "bool", "player");
+	CC("ua", ::Host_unlimited_ammo_toggle, 10, "Toggles Unlimmited Ammo. Add f to disable clip and equipment refill.", "bool", "player");
 	CC("ap", ::Host_doPerks, 10, "Gives all perks. Boolean toggles if modded perks are also given.", "bool", "player");
 	CC("botkick", ::Bot_Kickallbots, 50, "Kicks all bots that are in the game.");
 	CC("botkill", ::Bot_Killallbots, 50, "Kills all bots that are in the game.");
@@ -63,7 +63,8 @@ BuildMenu()
 	CC("b", ::NBBsFastXPLobbySetup, 100, "Shortcut Combo command that sets up Nothingbutbread's ideal XP lobby with a single command!");
 	CC("sls", ::XP_auto_set_lobby_on_gamestart, 100, "Stores current Xp lobby settings so it persists between games.");
 	CC("sr", ::setRankStatus, 1, "Sets the rank of the inputed player to the inputed number.", "int", "player");
-	CC("p", ::setPlayerAtIndex, 90, "Sets the player at the index to the player you are running commands on", "int");
+	CC("p", ::setPlayerAtIndex, 75, "Sets the player at the index to the player you are running commands on", "int");
+	CC("pap", ::PrintAllPlayers, 1, "Prints all player names with thier position in the player array to the killfeed", "float");
 	//Crital Commands, Don't remove unless you know what you're doing
 	//Reserve the / syombol to start crital base related cmds
 	CC("/kts", ::DEBUG_Setnewtext, 100, "Sets the text of the keyboard, Only use if debuging", "str");
@@ -81,7 +82,3 @@ BuildMenu()
 	CC("/getdistance", ::getdistance, 1, "Prints the distance from you to a speific player", "player");
 	CC("/setdvar", ::setaDvar, 90, "Sets a dvar with the inputs", "str", "str", "bool");
 }
-
-
-
-
