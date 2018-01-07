@@ -339,7 +339,5 @@ XP_unpackage_stored_xp_lobby_settings()
 			}
 			iprintln("^2XP lobby settings applied!");
 	  	} 
-	  	else { iprintln("^3Warning: ^7No xp lobby settings found saved!"); }
 	}
-	else { iprintln("^3Warning: ^7No xp lobby settings found saved!"); }
 }

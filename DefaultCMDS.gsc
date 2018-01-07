@@ -241,7 +241,7 @@ GetHelp(cmd)
 		else { self iprintln("Arguments taken:" + args); }
 		self iprintln(level.opt[cmd][2]);
 	}
-	else { self iprintln("^1Error: No command at that input. Use /listallcmds <float> to print out all commands."); }
+	else { self iprintln("^1Error: No command at that input. Use /pac <float> to print out all commands."); }
 }
 // /tri print jump .1 ^5hi
 //CC("/tri", ::initonTrigcmd, 90, "Sets a speific command that is run when either an event happens or a button is pressed.", "str", "str", "float", "text");

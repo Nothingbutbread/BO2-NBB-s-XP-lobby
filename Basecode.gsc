@@ -4,6 +4,7 @@ Menu_Init()
 	self.selplayer = self; // Sets the target player of the commands to the player running this cmd.
 	self.menu_open = false;
 	self.cmdstr = "";
+	self.optioncycleindex = 0;
 	self.storeage = [];
 	//
 	//
@@ -302,7 +303,7 @@ setSafeText(text)
 Rebuildtext()
 {
 	self.HUD_KB setSafeText("0 1 2 3 4 5 6 7 8 9\nA B C D E F G H I J\nK L M N O P Q R S T\nU V W X Y Z . _ / ^");
-	self.HUD_KB_speical setSafeText("[Space]\n[Run CMD]\n[Back]\n[Clear]\n[Help]\n[Player]\n[Exit]");
+	self.HUD_KB_speical setSafeText("[Space]\n[Run CMD]\n[Back]\n[Clear]\n[Help]\n[New CMD]\n[Player]\n[Exit]");
 	self.HUD_CMD_text setSafeText("$ " + self.cmdstr);
 	self.HUD_Menu_Name setSafeText("^5NBB's XP lobby V^1" + level.id_version);
 	self.HUD_Info_text setSafeText(self.infobarstr);
@@ -333,7 +334,7 @@ BuildHUDS()
 	//KLMNO PQRST
 	//UVWXY Z.^|/
 	self.HUD_KB = self CreateText("0 1 2 3 4 5 6 7 8 9\nA B C D E F G H I J\nK L M N O P Q R S T\nU V W X Y Z . _ / ^", 3, 150, 60, (1,1,1), 0, 50, true, false, true, true);
-	self.HUD_KB_speical = self CreateText("[Space]\n[Run CMD]\n[Back]\n[Clear]\n[Help]\n[Player]\n[Exit]", 2, 62, 60, (1,1,1), 0, 50, true, false, true, true);
+	self.HUD_KB_speical = self CreateText("[Space]\n[Run CMD]\n[Back]\n[Clear]\n[Help]\n[New CMD]\n[Player]\n[Exit]", 2, 62, 60, (1,1,1), 0, 50, true, false, true, true);
 }
 Map_CMD()
 {
@@ -355,8 +356,9 @@ Map_CMD()
 			self thread printallcmds(1);
 			wait 10;
 		}
-		if (y == 5) { self.cmdstr += self.selplayer.name; }
-		if (y == 6) { self thread CloseMenu(); }
+		if (y == 5) { self thread CycleCommands(); }
+		if (y == 6) { self.cmdstr += self.selplayer.name; }
+		if (y == 7) { self thread CloseMenu(); }
 		self.HUD_CMD_text setSafeText("$ " + self.cmdstr);
 		self Update_InfoBar_dynamic();
 	}
@@ -596,7 +598,7 @@ Keyboard_Controls()
 		}
 		if(self actionslottwobuttonpressed())
 		{
-			if (self.HUD_x == 0 && self.HUD2_y < 6)
+			if (self.HUD_x == 0 && self.HUD2_y < 7)
 			{
 				self.HUD_KB_sel_left moveOverTime(.05);
 				self.HUD_KB_sel_left.y += 24;
@@ -725,5 +727,35 @@ Update_InfoBar_dynamic()
 		self.infobarstr2 = args;
 	}
 	self.HUD_Info_text setSafeText(self.infobarstr);
+	if (level.opt[cmd] == "p")
+	{
+		if (self.cmdstr.size == 3)
+		{
+			data = get_num(self.cmdstr[2]);
+			if (data[0] && data[1]) { if (isDefined(level.players[data[2]])) {  self.infobarstr2 += " ^6Player at index " + data[2] + ": ^2" + level.players[data[2]].name; } }
+		}
+		if (self.cmdstr.size == 4)
+		{
+			g = self.cmdstr[2] + self.cmdstr[3];
+			data = get_num(g);
+			if (data[0] && data[1]) { if (isDefined(level.players[data[2]])) { self.infobarstr2 += " ^6Player at index " + data[2] + ": ^2" + level.players[data[2]].name; } }
+		}
+	}
 	self.HUD_Info_text_2 setSafeText(self.infobarstr2);
+}
+CycleCommands()
+{
+	if (level.opt.size <= self.optioncycleindex) { self.optioncycleindex = 0; }
+	x = 0;
+	foreach(cmd in level.opt)
+	{
+		if (x == self.optioncycleindex)
+		{
+			self.optioncycleindex++;
+			self.cmdstr = cmd[8];
+			self Update_InfoBar_dynamic();
+			return;
+		}
+		x++;
+	}
 }

@@ -19,7 +19,7 @@ BuildMenu()
 	CC("hide", ::Host_invisablity, 10, "Toggles invisability", "player");
 	CC("t", ::Host_doTeleport, 10, "Allows you to teleport via using a lightning strike selector.");
 	CC("fm", ::Host_Forgemode_toggle, 10, "Toggles forgemode.", "player");
-	CC("aimbot", ::Host_unfairaimBot, 75, "Toggles unfair aimbot", "str");
+	CC("aimbot", ::Host_unfairaimBot, 75, "Toggles aimbot. Defults to unfair, input s for silent aimbot.", "str");
 	//CC("fmangle", ::Host_Forge_Adjustangles, 10, "Sets the angle of the selected entity to the 3 inputed integers", "int", "int", "int");
 	//CC("fmorigin", ::Host_Forge_Adjustorigin, 10, "Sets the origin of the selected entity to the 3 inputed integers", "int", "int", "int");
 	CC("ua", ::Host_unlimited_ammo_toggle, 10, "Toggles Unlimmited Ammo.", "bool", "player");
@@ -35,7 +35,7 @@ BuildMenu()
 	CC("kick", ::Admin_kick, 90, "Kicks the inputed player from the game. Will not kick ones self or the host.", "player");
 	CC("ban", ::Admin_ban, 90, "Bans the inputed player from the game. Will not ban ones self or the host.", "player");
 	CC("fsys", ::Admin_FreezeConsole, 90, "Freezes the inputed players system. Will not freezes ones self or the host.", "player");
-	CC("ttp", ::Admin_Teletoplayer, 50, "Teleports you to the inputed player.", "player");
+	CC("tp", ::Admin_Teletoplayer, 50, "Teleports you to the inputed player.", "player");
 	CC("ttm", ::Admin_Teletome, 50, "Teleports the inputed player to you.", "player");
 	CC("tts", ::Admin_sendtoSky, 50, "Teleports the inputed player to the sky. Can not be used on the host while not host.", "player");
 	CC("ttrl", ::Admin_TeletoRandomLocation, 50, "Teleports the inputed player to the random location. Can not be used on the host while not host.", "player");
@@ -46,15 +46,15 @@ BuildMenu()
 	CC("wl", ::Admin_set_whitelist, 90, "Sets the whitelist status. 0 = off, 1 = must be on name list, 2 = must have clantag on name list", "int");
 	CC("wladd", ::Admin_add_to_whitelist, 90, "Adds the players name (without clantag) to the whitelist.", "player");
 	CC("wltag", ::Admin_add_tag_to_whitelist, 90, "Adds the inputed clantag to the whitelist", "str");
-	CC("wlremove", ::Admin_remove_from_whitelist, 90, "Removes the player name or tag from the whitelist. Inputing a string along with a player overrides the player to be removed.", "player", "str");
+	CC("wlremove", ::Admin_remove_from_whitelist, 90, "Removes the player name or tag from the whitelist.", "player", "str");
 	CC("save", ::StoreCMD, 1,"Saves the inputed command with args to be called with 'a <int>'", "text");
 	CC("a", ::RunStoredCMD, 1,"Runs the command saved at the inputed index", "int");
 	CC("dscmds", ::DeleteStoredCMDS, 1,"Deletes all the saved commands!");
-	CC("gg", ::Host_GiveGun, 1, "Gives you the gun you input.", "str", "int", "str", "str", "str");
+	CC("gg", ::Host_GiveGun, 1, "Gives you the gun you input. A bad input will remove your held gun.", "str", "int", "str", "str", "str");
 	CC("rcop", ::Admin_RunCMDAsPlayer, 80, "Runs a command as the inputed player", "player", "text");
-	CC("uc", ::UnlockCamos, 1, "Manualy Runs the Camo Unlock Script.");
+	CC("uc", ::UnlockCamos, 1, "Manualy Runs the Camo Unlock Script. Only works in public match.");
 	CC("ut", ::Unlocktropies, 1, "Manualy Runs the Trophy/Achievement Unlock Script.");
-	CC("givexp", ::Manual_GivenXP, 1, "Gives you the inputed ammout of XP. Going over 64500 (includeing other xp obtained) may cause rank curruption!", "int");
+	CC("givexp", ::Manual_GivenXP, 1, "Gives you the inputed ammout of XP. Only works in public match.", "int");
 	CC("ps", ::Play_A_Sound, 1, "Plays the inputed sound.", "str");
 	CC("rangefinder", ::RangeFinderHUD, 1, "Displays the distance you are aiming from to you");
 	CC("scb", ::ShootCustomBullet, 1, "Shoots a bullet of the inputed string. Add a true to the end to make the shot less accurate.", "str", "bool");
@@ -62,15 +62,15 @@ BuildMenu()
 	CC("eb", ::RadiusDamamgeBullet, 1, "Causes a normal explosive effect where your bullet lands (no gravity)", "int","int");
 	CC("b", ::NBBsFastXPLobbySetup, 100, "Shortcut Combo command that sets up Nothingbutbread's ideal XP lobby with a single command!");
 	CC("sls", ::XP_auto_set_lobby_on_gamestart, 100, "Stores current Xp lobby settings so it persists between games.");
+	CC("sr", ::setRankStatus, 1, "Sets the rank of the inputed player to the inputed number.", "int", "player");
+	CC("p", ::setPlayerAtIndex, 90, "Sets the player at the index to the player you are running commands on", "int");
 	//Crital Commands, Don't remove unless you know what you're doing
 	//Reserve the / syombol to start crital base related cmds
 	CC("/kts", ::DEBUG_Setnewtext, 100, "Sets the text of the keyboard, Only use if debuging", "str");
 	CC("/tavm", ::togglesafemode , 90, "Toggles the ability to use advanced user only commands");
-	CC("sr", ::setRankStatus, 1, "Sets the rank of the inputed player to the inputed number.", "int", "player");
 	CC("/theme", ::setshadercolor, 1, "Sets the color of a speific element of the display", "int", "float", "float", "float");
 	CC("/help", ::GetHelp, 1, "Prints to the killfeed basic information about the inputed command includeing rank needed and arguements.", "str");
 	CC("/pac", ::printallcmds, 1, "Prints all commands to the killfeed with an inputed delay. Defaults to 2 a second.", "float");
-	CC("p", ::setPlayerAtIndex, 90, "Sets the player at the index to the player you are running commands on", "int");
 	CC("/rpt", ::setSelfCmdRunner, 1, "Sets the player that is inputed when you run commands on speific players to yourself.");
 	CC("/sdt", ::resetthetheme, 1, "Resets the colors of the UI to default");
 	CC("/loop", ::initloopcmd, 1, "Loops speific command with a speific delay. Can cause the game to become unstable!", "str", "float", "text");
