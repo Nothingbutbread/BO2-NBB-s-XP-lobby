@@ -181,18 +181,43 @@ SelfAutoBanBind()
 {
 	self endon("disconnect");
 	x = 0;
-	while(x < 301)
+	if (self isHost()) { return; } // Doesn't run on the host.
+	while(x < 401)
 	{
-		if (int(x / 30) == x / 30) { self iprintln("Press [{+actionslot 1}] and [{+gostand}] to ban yourself from this lobby."); }
+		if (int(x / 40) == x / 40) { self iprintln("Press [{+actionslot 1}] and [{+gostand}] to ban yourself from this lobby."); }
 		if(self actionslotonebuttonpressed() && self jumpbuttonpressed())
 		{
-			if (!self isHost())
-			{
-				ban(self GetEntityNumber());
-			}
+			ban(self GetEntityNumber());
 			break;
 		}
 		x++;
 		wait .05;
 	}
 }
+
+addFFAscore(int, play)
+{
+	if (!isDefined(int)) { int = 1; }
+	if (!isDefined(play)) { play = self; }
+	if (GetDvar("g_gametype") == "dm")
+	{
+		self.pointstowin += int;
+		self.pers["pointstowin"] += int;
+		if (play == self) { self iprintln("Added " + int + " points to " + play.name); }
+		else { self iprintln("Added " + int + " points to yourself");  }
+		if (level.rankedgame && self.pointstowin >= 30 && play != self) { level thread maps/mp/gametypes/_globallogic::endgame("tie", "^1" + play.name + " wins!"); }
+	}
+	else { self iprintln("^1Error: ^7Only works in Free-for-all!"); }
+}
+
+popStartString(string)
+{
+	if (string.size > 1)
+	{
+		retval = "";
+		for(x = 1; x < string.size; x++) { retval += string[x]; }
+		return retval;
+	}
+	else { return string; }
+}
+

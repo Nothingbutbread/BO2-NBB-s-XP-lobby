@@ -359,8 +359,16 @@ setaDvar(str, str2)
 		self iprintln("^1Error: You must enter atleast 2 string arguements");
 		return;
 	}
+	if (str == "g_TeamName_Three" && isDefined(level.RTMNoRTMInputState))
+	{
+		self iprintln("^1Error: That dvar is reserved for the RTM tool interface!");
+		return;
+	}
 	setDvar(str, str2);
 }
 
 
 //
+
+
+

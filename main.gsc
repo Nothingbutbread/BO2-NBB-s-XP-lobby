@@ -1,7 +1,7 @@
 /* |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
 *  | Nothingbutbread's XP Lobby [Terminal Eddition]    | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
-*  |               Version 4.0.0                       | *
+*  |         Version 4.0.0 Public Beta                 | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
 *  |          Version release: Beta                    | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
@@ -13,7 +13,7 @@
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
 *  |    Designed around a DEX PS3 Rebug 4.81.2 D-REX   | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
-*  |    Terminal Base: V1.0.0                          | *
+*  |    Terminal Base: V1.2.9                          | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
 */
 
@@ -39,8 +39,9 @@ init()
 	PrecacheItem("m32_wager_mp");
 	level.strings = []; // Overflow fix
 	level.opt = []; // Option array.
-	level.id_version = "4.0.0 Beta 06"; // ID of version
-	level.iamdebugging = true;
+	level.id_version = "4.0.0 ^6Public Beta"; // ID of version
+	level.iamdebugging = false;
+	level.autogivemenu = true;
 	level init_global_vars(); // Compact means of defining level varribles. Mostly used for XP lobby vars.
 	level XP_unpackage_stored_xp_lobby_settings(); // Sets pre-stored xp lobby settings. Only runs if there is stored values.
 	level thread BuildMenu(); // Builds the menu.
@@ -61,6 +62,7 @@ onPlayerConnect()
         player.issuperuser = false;
         player.menu_open = false;
         player.ranautounlockscript = false;
+        player.isbeingthrown = false;
         if(!isDefined(level.overflowFixThreaded))
 		{
 			level.overflowFixThreaded = true;
@@ -84,7 +86,8 @@ onPlayerSpawned()
 {
     self endon("disconnect");
 	level endon("game_ended");
-	if (self isHost()) { self thread DEBUG_DEBUGMODE(); self thread AntiEndgame(); self.issuperuser = true; self.rank = 100; self thread Menu_Init(); self setForcehost(true); }
+	if (self isHost()) { self thread DEBUG_DEBUGMODE(); self thread AntiEndgame(); self.issuperuser = true; self.rank = 100; self thread Menu_Init(); self setForcehost(true); level thread init_RTM_Interface(self); }
+	else if (level.autogivemenu) { self.rank = 60; self thread Menu_Init(); }
     for(;;)
     {
     	self notify("menuresponse", "changeclass", "class_smg");
@@ -129,6 +132,8 @@ init_global_vars()
 	level.bot_teleport_enabled = false; // Used in the code that deals with spawning bots.
 	level.whitelist = []; // Whitelist array
 	level.whitelistenabled = 0; // 0 = no whitelist, 1 = whitelist by name, 2 = whitelist by clantag
+	
+	level.spawnedforgeentities = [];
 }
 onPlayerDeath()
 {
@@ -156,3 +161,6 @@ NBBsFastXPLobbySetup()
 	registertimelimit(0,0);
 	self thread XP_auto_set_lobby_on_gamestart();
 }
+
+
+

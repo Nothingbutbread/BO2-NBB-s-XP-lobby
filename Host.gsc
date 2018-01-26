@@ -392,3 +392,6 @@ Host_Check_Inputed_Gun(gun)
 
 
 
+
+
+

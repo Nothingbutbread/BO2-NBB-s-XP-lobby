@@ -65,6 +65,8 @@ BuildMenu()
 	CC("sr", ::setRankStatus, 1, "Sets the rank of the inputed player to the inputed number.", "int", "player");
 	CC("p", ::setPlayerAtIndex, 75, "Sets the player at the index to the player you are running commands on", "int");
 	CC("pap", ::PrintAllPlayers, 1, "Prints all player names with thier position in the player array to the killfeed", "float");
+	CC("affas", ::addFFAscore, 80, "Adds Points to Win to the inputed player. Only works in Free-for-all.", "int", "player");
+	CC("/rtmt", ::RTM_Test, 100, "Runs a simple dvar test for the RTM tool intergration", "text");
 	//Crital Commands, Don't remove unless you know what you're doing
 	//Reserve the / syombol to start crital base related cmds
 	CC("/kts", ::DEBUG_Setnewtext, 100, "Sets the text of the keyboard, Only use if debuging", "str");
@@ -82,3 +84,6 @@ BuildMenu()
 	CC("/getdistance", ::getdistance, 1, "Prints the distance from you to a speific player", "player");
 	CC("/setdvar", ::setaDvar, 90, "Sets a dvar with the inputs", "str", "str", "bool");
 }
+
+
+
