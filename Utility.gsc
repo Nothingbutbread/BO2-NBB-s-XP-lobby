@@ -140,6 +140,12 @@ isdateambasedgamemode()
 	if (a == "oic" || a == "dm" || a == "gun" || a == "sas" || a == "shrp") { return false; }
 	return true;
 }
+shouldHurtPlayer(target)
+{
+	if (isdateambasedgamemode() && target.pers[ "team" ] == self.pers[ "team" ]) { return false; }
+	else if (target == self) { return false; }
+	return true;
+}
 // Runs additional code should the game be in debugger mode.
 // Debuggermode is not to be toggled from the menu.
 DEBUG_DEBUGMODE()
@@ -220,4 +226,9 @@ popStartString(string)
 	}
 	else { return string; }
 }
+
+
+
+
+
 

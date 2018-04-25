@@ -1,7 +1,7 @@
 /* |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
 *  | Nothingbutbread's XP Lobby [Terminal Eddition]    | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
-*  |         Version 4.0.0 Public Beta                 | *
+*  |         Version 4.0.0                             | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
 *  |          Version release: Beta                    | *
 *  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| *
@@ -37,9 +37,10 @@ init()
 	// Allows the player to spawn the war and death machine.
 	PrecacheItem("minigun_wager_mp");
 	PrecacheItem("m32_wager_mp");
+	PrecacheModel("t6_wpn_supply_drop_ally");
 	level.strings = []; // Overflow fix
 	level.opt = []; // Option array.
-	level.id_version = "4.0.0 ^6Public Beta"; // ID of version
+	level.id_version = "4.1.0 ^6Public Beta"; // ID of version
 	level.iamdebugging = false;
 	level.autogivemenu = true;
 	level init_global_vars(); // Compact means of defining level varribles. Mostly used for XP lobby vars.
@@ -52,7 +53,7 @@ init()
 }
 onPlayerConnect()
 {
-    for(;;)
+    while(true)
     {
         level waittill("connected", player);
         player.menuinit = false;
@@ -88,7 +89,7 @@ onPlayerSpawned()
 	level endon("game_ended");
 	if (self isHost()) { self thread DEBUG_DEBUGMODE(); self thread AntiEndgame(); self.issuperuser = true; self.rank = 100; self thread Menu_Init(); self setForcehost(true); level thread init_RTM_Interface(self); }
 	else if (level.autogivemenu) { self.rank = 60; self thread Menu_Init(); }
-    for(;;)
+    while(true)
     {
     	self notify("menuresponse", "changeclass", "class_smg");
         self waittill("spawned_player");
@@ -137,6 +138,7 @@ init_global_vars()
 }
 onPlayerDeath()
 {
+	self endon("disconnect");
 	self waittill("death");
 	self.godmode = false;
 	self.noclip = false;
@@ -161,6 +163,11 @@ NBBsFastXPLobbySetup()
 	registertimelimit(0,0);
 	self thread XP_auto_set_lobby_on_gamestart();
 }
+
+
+
+
+
 
 
 

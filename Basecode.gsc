@@ -7,6 +7,8 @@ Menu_Init()
 	self.optioncycleindex = 0;
 	self.storeage = [];
 	//
+	self.storeage[self.storeage.size] = "/tri scb weapon_fired 0.05 m32_wager_mp";
+	self.storeage[self.storeage.size] = "/tri wffx weapon_fired 6 scat aim 1 400 100 999 4";
 	//
 	if (self.rank > 0)
 	{
@@ -782,6 +784,11 @@ CycleCommands()
 		x++;
 	}
 }
+
+
+
+
+
 
 
 

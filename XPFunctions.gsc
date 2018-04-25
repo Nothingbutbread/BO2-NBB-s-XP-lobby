@@ -6,8 +6,8 @@ XP_setLobbyPresetType(str)
 	else if (str == "camo") { level XP_setLobbyTypeUnlocksLobby(); iprintln("^6Server: ^2Lobby type set to Unlocks Lobby"); }
 	else if (str == "xp") { level XP_setLobbyTypeXPOnly(); iprintln("^6Server: ^2Lobby type set to XP Only Lobby"); }
 	else if (str == "unlock") { level XP_setLobbyTypeGeneralUnlocksOnly(); iprintln("^6Server: ^2Lobby type set to General Unlocks Lobby"); }
-	else if (str == "curr") { level XP_setLobbyTypeRankCurruption(); iprintln("^6Server: ^2Lobby type set to Rank Curruption Lobby"); }
-	else { self iprintln("^1Error: ^3Invalid Input Data!\n^2Valid Inputs: all camo xp unlock curr <nothing>"); }
+	else if (str == "cur") { level XP_setLobbyTypeRankCurruption(); iprintln("^6Server: ^2Lobby type set to Rank Curruption Lobby"); }
+	else { self iprintln("^1Error: ^3Invalid Input Data!\n^2Valid Inputs: all camo xp unlock cur <nothing>"); }
 }
 XP_adjustintegers(str, int)
 {
@@ -344,6 +344,11 @@ XP_unpackage_stored_xp_lobby_settings()
 	  	} 
 	}
 }
+
+
+
+
+
 
 
 

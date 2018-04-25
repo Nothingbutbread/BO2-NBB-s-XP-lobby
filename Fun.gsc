@@ -24,6 +24,7 @@ Fun_Player_Grenades(play)
 }
 Fun_Player_Grenades_Effect(play)
 {
+	self endon("disconnect");
 	if (!isDefined(play)) { closestplayer = true; play = self; }
 	else { closestplayer = false; }
 	while(self.fungrenademod)
@@ -66,5 +67,10 @@ Fun_Control_player()
 {
 	
 }
+
+
+
+
+
 
 

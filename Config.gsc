@@ -17,14 +17,11 @@ Config_nbbmade_Storeage_Coolcombos()
 		if (player.menuinit && player.rank > 0)
 		{
 			player.storeage[player.storeage.size] = "/tri scb weapon_fired 0.05 m32_wager_mp t";
+			player.storeage[player.storeage.size] = "/tri wffx weapon_fired 1 scat aim 1 400 100 999 4";
 		}
 	}
 }
 
-
-
-
-//
 
 
 

@@ -1,5 +1,11 @@
 BuildMenu()
 {
+	CC("fmangle", ::Host_Forge_Adjustangles, 10, "Sets the angle of the selected entity to the 3 inputed integers", "int", "int", "int");
+	CC("fmorigin", ::Host_Forge_Adjustorigin, 10, "Sets the origin of the selected entity to the 3 inputed integers", "int", "int", "int");
+	CC("sfp",::Forge_Spawn_Platform, 50, "Spawns a platform with the inputed number of items length and width with a speific spacing.", "int", "int", "float", "float", "str");
+	CC("fm", ::Host_Forgemode_toggle, 10, "Toggles forgemode.", "player");
+	CC("dase", ::Forge_Reset_Spawned_Entities, 10, "Deletes all entities spawned by the menu");
+	CC("wffx", ::doCustomWeaponEffect, 50, "Base Weapon Forge Command", "str", "str", "text");
 	CC("god",::godmode, 1, "Toggles Godmode", "player");
 	CC("sps",::setPlayerSpeed, 1, "Sets speed to the inputed value.", "float", "player");
 	CC("print", ::printtext, 60, "Prints anything after the command to everyones kill feed", "text");
@@ -18,10 +24,7 @@ BuildMenu()
 	CC("echerry", ::Host_ElectricCherry, 10, "Toggles electric cherry.", "player");
 	CC("hide", ::Host_invisablity, 10, "Toggles invisability", "player");
 	CC("t", ::Host_doTeleport, 10, "Allows you to teleport via using a lightning strike selector.");
-	CC("fm", ::Host_Forgemode_toggle, 10, "Toggles forgemode.", "player");
 	CC("aimbot", ::Host_unfairaimBot, 75, "Toggles aimbot. Defults to unfair, input s = silent, f = fair, u = unfair", "str");
-	//CC("fmangle", ::Host_Forge_Adjustangles, 10, "Sets the angle of the selected entity to the 3 inputed integers", "int", "int", "int");
-	//CC("fmorigin", ::Host_Forge_Adjustorigin, 10, "Sets the origin of the selected entity to the 3 inputed integers", "int", "int", "int");
 	CC("ua", ::Host_unlimited_ammo_toggle, 10, "Toggles Unlimmited Ammo. Add f to disable clip and equipment refill.", "bool", "player");
 	CC("ap", ::Host_doPerks, 10, "Gives all perks. Boolean toggles if modded perks are also given.", "bool", "player");
 	CC("botkick", ::Bot_Kickallbots, 50, "Kicks all bots that are in the game.");
@@ -50,7 +53,7 @@ BuildMenu()
 	CC("save", ::StoreCMD, 1,"Saves the inputed command with args to be called with 'a <int>'", "text");
 	CC("a", ::RunStoredCMD, 1,"Runs the command saved at the inputed index", "int");
 	CC("dscmds", ::DeleteStoredCMDS, 1,"Deletes all the saved commands!");
-	CC("gg", ::Host_GiveGun, 1, "Gives you the gun you input. A bad input will remove your held gun.", "str", "int", "str", "str", "str");
+	CC("gg", ::Host_GiveGun, 1, "Gives you the gun you input. Must use dev name, the _mp is auto-added.", "str", "int", "str", "str", "str");
 	CC("rcop", ::Admin_RunCMDAsPlayer, 80, "Runs a command as the inputed player", "player", "text");
 	CC("uc", ::UnlockCamos, 1, "Manualy Runs the Camo Unlock Script. Only works in public match.");
 	CC("ut", ::Unlocktropies, 1, "Manualy Runs the Trophy/Achievement Unlock Script.");
@@ -84,6 +87,11 @@ BuildMenu()
 	CC("/getdistance", ::getdistance, 1, "Prints the distance from you to a speific player", "player");
 	CC("/setdvar", ::setaDvar, 90, "Sets a dvar with the inputs", "str", "str", "bool");
 }
+
+
+
+
+
 
 
 

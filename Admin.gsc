@@ -58,7 +58,7 @@ Admin_kick(play)
 	if (!isDefined(play)) { play = self; }
 	if (play != self && !play.issuperuser) { self iprintln("Kicked: " + play.name); kick(play GetEntityNumber()); }
 	else if (play.issuperuser) { play iprintlnbold(self.name + " tried to kick you from the game!"); self iprintln("^1You can not kick yourself or the host! ... your legs are too short for that!"); } 
-	else { self iprintln("^1You can not kick yourself or the host! ... your legs are too short for that!"); }
+	else { self iprintln("^1You can not kick yourself from the game."); }
 }
 Admin_ban(play)
 {
@@ -185,6 +185,11 @@ DeleteStoredCMDS()
 	self iprintln("All stored commands deleted!");
 }
 //
+
+
+
+
+
 
 
 

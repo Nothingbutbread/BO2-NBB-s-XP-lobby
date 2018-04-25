@@ -102,48 +102,6 @@ Host_unlimited_ammo(includeclip)
 	    wait 0.1;
     }
 }
-Host_Forgemode_toggle(play)
-{
-	if (!isDefined(play)) { play = self; }
-	if (play != self) { self iprintln("Toggled Forge Mode for " + play.name); }
-	if (!isDefined(play.forgemode)) { play.forgemode = false; }
-	if (play.forgemode) { play.forgemode = false; play iprintln("Forge Mode has been ^1Disabled!"); }
-	else { play.forgemode = true; play thread Host_ForgeMode(); play iprintln("Forge Mode has been ^2Enabled!"); }
-}
-Host_ForgeMode()
-{
-	self iprintln("^5Aim at objects to move them!\n^7You can use the terminal to adjust the angles and origin manualy\nof your most recently edited object.");
-	axis = 0;
-	ammout = 5;
-	while(self.forgemode)
-	{
-		while(self adsbuttonpressed())
-		{
-			trace = bulletTrace(self GetTagOrigin("j_head"),self GetTagOrigin("j_head")+ anglesToForward(self GetPlayerAngles())* 1000000,true,self);
-			while(self adsbuttonpressed())
-			{
-				self.selentity = trace["entity"];
-				trace["entity"] setOrigin(self GetTagOrigin("j_head") + anglesToForward(self GetPlayerAngles()) * 200);
-				trace["entity"].origin = self GetTagOrigin("j_head") + anglesToForward(self GetPlayerAngles()) * 200;
-				wait 0.1;
-			}
-		}
-		wait 0.1;
-	}
-}
-Host_Forge_Adjustangles(in1, in2, in3)
-{
-	if (!isDefined(self.selentity)) { self iprintln("^1Error: ^7You need to use forge mode to select an entity first!\nUse 'fm' to do so"); return; }
-	if (!isDefined(in1) || !isDefined(in2) || !isDefined(in3)) { self iprintln("^1Error: ^7You must input 3 integers between 0 and 359"); return; }
-	if (in1 >= 0 && in1 < 360 && in2 >= 0 && in2 < 360 && in3 >= 0 && in3 < 360) { self.selentity.angles = (in1, in2, in3); self iprintln("^2Angles set succesfuly!"); }
-	else { self iprintln("^1Error: ^7The inputed integers must be between 0 and 359"); }
-}
-Host_Forge_Adjustorigin(in1, in2, in3)
-{
-	if (!isDefined(self.selentity)) { self iprintln("^1Error: ^7You need to use forge mode to select an entity first!\nUse 'fm' to do so"); return; }
-	if (!isDefined(in1) || !isDefined(in2) || !isDefined(in3)) { self iprintln("^1Error: ^7You must input 3 integers."); return; }
-	self.selentity moveto((in1, in2, in3), .05);
-}
 Host_doTeleport()
 {
 	self endon("disconnect");
@@ -368,8 +326,7 @@ godMode(play)
 Host_GiveGun(gun, camo, a1, a2, a3)
 {
 	if (!isDefined(gun)) { self iprintln("^1Error: ^7You must input a string!"); return; }
-	if (!Host_Check_Inputed_Gun(gun)) { self iprintln("^1Error: ^7There is no way the gun name you inputed was valid!"); return; }
-	weapon = gun;
+	weapon = gun + "_mp";
 	if (isDefined(a1) && a1 != "") { weapon += "+" + a1; }
 	if (isDefined(a2) && a2 != "") { weapon += "+" + a2; }
 	if (isDefined(a3) && a3 != "") { weapon += "+" + a3; }
@@ -388,6 +345,11 @@ Host_Check_Inputed_Gun(gun)
 }
 // insas_mp+fmj+rf+steadyaim
 // 0123456
+
+
+
+
+
 
 
 
